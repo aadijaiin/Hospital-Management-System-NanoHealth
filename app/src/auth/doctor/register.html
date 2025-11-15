@@ -1,0 +1,182 @@
+<nav class="navbar navbar-expand-lg px-2 px-lg-5 border-bottom container-fluid">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex justify-content-center align-items-center p-0 text-decoration-none" ui-sref="landing"> <img
+                src="app/public/logo.png" style="height: 60px;"> NanoHealth</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav gap-lg-5 ms-auto">
+                <li class="nav-item h5">
+                    <a class="nav-link" aria-current="page" ui-sref="landing"> Home</a>
+                </li>
+                <li class="nav-item h5">
+                    <a class="nav-link " href="#">Features</a>
+                </li>
+                <li class="nav-item h5">
+                    <a class="nav-link" href="#">Pricing</a>
+                </li>
+                <li class="nav-item dropdown h5">
+                    <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Register As
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" ui-sref="patientRegistration">Patient</a></li>
+                        <li><a class="dropdown-item" ui-sref="doctorRegistration">Doctor</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="py-2 d-flex flex-column justify-content-center align-items-center">
+    <h3 class="mt-2 text-decoration-underline">Register As Doctor</h3>
+    <div ng-if="loaderVisible" class="loader"></div>
+    <div ng-hide="loaderVisible"
+        class="d-flex flex-column rounded-4 p-xl-0 container-fluid mx-lg-5 justify-content-center align-items-center gap-4"
+        id="formContainer">
+        <!-- <div class="d-flex flex-column flex-lg-row w-100 align-items-center justify-content-between">
+            <p class="fs-2 fw-semibold"> <img src="app/public/logo.png" style="height: 60px;">NanoHealth</p>
+            <p class="fs-3 fw-medium mx-4">Doctor Registration</p>
+        </div> -->
+        <form class="rounded-4 w-lg-75 d-flex flex-row" id="form" ng-submit="register()">
+            <div class="col rounded-4">
+                <div class="mt-4 gap-4 d-flex flex-column flex-md-row">
+                    <div class="col">
+                        <p class="mb-2 fw-medium">First Name <span class="text-danger">*</span></p>
+                        <input type="text" name="firstName" ng-model="firstName" class="form-control"
+                            placeholder="First name" required pattern="^[A-Za-z]+$" maxlength="20" minlength="2"
+                            title="Name should only contain Alphabets">
+                    </div>
+                    <div class="col">
+                        <p class="mb-2 fw-medium">Last Name:</p>
+                        <input type="text" name="lastName" ng-model="lastName" class="form-control"
+                            placeholder="Last name" pattern="^[A-Za-z]+$" maxlength="20"
+                            title="Name should only contain Alphabets">
+                    </div>
+                </div>
+                <div class="mt-4 gap-4 d-flex flex-column flex-md-row">
+                    <div class="col">
+                        <p class="mb-2 fw-medium">Gender <span class="text-danger">*</span></p>
+                        <select class="form-select" name="gender" aria-label="Gender" required ng-model="gender">
+                            <option value="" selected disabled="disabled">Select</option>
+                            <option ng-repeat="gender in genders" value="{{gender.id}}">{{gender}}</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="formFile" class="form-label fw-medium">Profile Picture <span
+                                class="text-danger">*</span></label>
+                        <input class="form-control" name="profilePhoto" type="file" id="formFile" accept="image/*"
+                            required>
+                    </div>
+                </div>
+
+                <div class="mb-2 mt-4 d-flex flex-column flex-md-row gap-4">
+                    <div class="col">
+                        <label for="exampleInputEmail1" class="form-label fw-medium">Email address <span
+                                class="text-danger">*</span></label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="abc@xyz.com" ng-model="email" required
+                            title='Please enter a valid Email ID' pattern="[^@\s]+@[a-zA-Z]{3,6}\.[a-zA-Z]{2,4}">
+
+                    </div>
+                    <div class="col">
+                        <label for="Phone" class="form-label fw-medium">Phone No. <span
+                                class="text-danger">*</span></label>
+                        <input type="number" name="phoneNo" class="form-control" id="Phone" ng-model="phone" required
+                            placeholder="Phone" pattern="^[6-9][0-9]+$" minlength="10" maxlength="10">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex flex-column gap-4 flex-md-row">
+                        <div class="col">
+                            <p class="mb-2 fw-medium">Password <span class="text-danger">*</span> </p>
+                            <div class="d-flex">
+                                <div class="form-control d-flex align-items-center p-0 ">
+                                    <input type="password" name="password" id="password" placeholder="Password" required
+                                        pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                                        title="password must contain 1 small case , 1 upper case,1 special character and 1 number, length must be between 8-12."
+                                        maxlength="16" minlength="8" ng-model="password" class="form-control border-0">
+                                    <img class="m-0 mx-2" ng-click="showHidePass()"
+                                        src="{{showPassState == 'Show' ? 'app/public/eye.png' : 'app/public/hiddens.png'}}" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <p class="mb-2 fw-medium">Confirm Password <span class="text-danger">*</span> </p>
+                            <div class="form-control d-flex align-items-center p-0 ">
+                                <input type="password" name="confirmPassword" id="confirmPassword"
+                                    placeholder="Password" required
+                                    pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                                    title="password must contain 1 small case , 1 upper case,1 special character and 1 number, length must be between 8-12."
+                                    maxlength="16" minlength="8" ng-model="confirmPassword"
+                                    class="form-control border-0">
+                                <img class="m-0 mx-2" ng-click="showHidePassForConfirm()"
+                                    src="{{showPassStateForConfirm == 'Show' ? 'app/public/eye.png' : 'app/public/hiddens.png'}}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 d-flex flex-column flex-md-row gap-4">
+                        <div class=" col">
+                            <label for="exampleFormControlTextarea1" class="form-label fw-medium">Address <span
+                                    class="text-danger">*</span></label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="col">
+                            <div class="">
+                                <label for="exampleFormControlTextarea1" class="form-label fw-medium">Experience
+                                </label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="mt-4 gap-4 d-flex flex-column flex-md-row">
+                    <!-- <div class="col">
+                        <p class="mb-2 fw-medium">Blodg Group <span class="text-danger">*</span></p>
+                        <select class="form-select" name="bllodGroup" aria-label="bloodGroup" required
+                            ng-model="bloodGroup">
+                            <option value="" disabled selected>Select </option>
+                            <option ng-repeat="group in bloodGroups" value="{{group.id}}">{{group.group}}</option>
+                        </select>
+                    </div> -->
+                    <div class="col">
+                        <label for="formFile" class="form-label fw-medium">DOB <span
+                                class="text-danger">*</span></label>
+                        <input class="form-control" name="dob" type="date" required>
+                    </div>
+                </div>
+                <div class="mb-2 mt-4 d-flex gap-4">
+                    <div class="col">
+                        <label for="height" class="form-label fw-medium">Specialization<span
+                                class="text-danger">*</span></label>
+                        <input type="number" name="height" class="form-control" id="height" required
+                            placeholder="Height (in cm)">
+                    </div>
+                    <div class="col">
+                        <label for="weight" class="form-label fw-medium">Qualification <span
+                                class="text-danger">*</span></label>
+                        <input type="number" name="weight" class="form-control" id="weight" required
+                            placeholder="Weight (in kg)">
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <input type="submit" ng-disabled="disableSubmit"
+                        class="btn btn-success w-50 mt-4  fw-bold border-0 py-xl-2" style="background-color:#75136b ;"
+                        value="Register">
+                </div>
+                <div>
+                    <p class="form-text text-center mt-2 fw-bolder"> Already Registered ? <a ui-sref="login"
+                            style="color:#75136b;"> Log in</a> here.</p>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+
+</div>

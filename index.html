@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="hms" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMS</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="node_modules/sweetalert2/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="node_modules/sweetalert2/themes/bootstrap-5.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+        rel="stylesheet">
+    <style>
+        .w-45 {
+            width: 45%;
+        }
+
+        .h-lg-50 {
+            height: 92%;
+        }
+
+        .w-lg-75 {
+            width: 75%;
+        }
+
+        @media screen and (max-width: 990px) {
+            .h-lg-50 {
+                height: auto
+            }
+
+            .w-lg-75 {
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 1200px) {
+            #form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body class="h-100">
+
+    <ui-view class="min-vh-100 h-100">
+    </ui-view>
+    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="node_modules/@uirouter/angularjs/release/angular-ui-router.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="node_modules/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="node_modules/chart.js/dist/chart.umd.min.js"></script>
+    <script src="app/module/hms.module.js"></script>
+    <script src="app/module/config/hms.config.js"></script>
+</body>
+
+</html>
