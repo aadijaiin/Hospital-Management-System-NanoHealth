@@ -1,1 +1,1 @@
-const hms = angular.module('hms',['ui.router'])
+const hms = angular.module('hms', ['ui.router'])
