@@ -1,3 +1,5 @@
+
+
 hms.controller('doctorRegisterController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
 
     $scope.showPassState = 'Show'
@@ -24,20 +26,7 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-    // $scope.getUser = function () {
-    //     // $scope.loaderVisible = true;
-    //     $http({
-    //         method: 'GET',
-    //         url: `${baseUrl.url}/${baseUrl.account.profile}`,
-    //     }).then(function (res) {
-    //         // $scope.loaderVisible = false;
-    //         $state.go('home')
-    //     }).catch(function (e) {
-    //         // $scope.loaderVisible = false;
-    //         console.log('Server Unreachable')
-    //     })
-    // }
-    // $scope.getUser();
+
 
     function fileValidation(fileInput) {
         var filePath = fileInput.value;
@@ -93,19 +82,15 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
             return;
         }
         if (fileValidation(document.getElementById('formFile'))) {
-            // const form = document.getElementById('form');
-            // const formData = new FormData(form);
             console.log('formData: ', Array.from(formdata))
-            // $scope.loaderVisible = true;
             $http({
                 method: 'POST',
-                url: `https://10.21.98.133:8000/auth/register?role=doctor`,
+                // url: `${baseUrl.url}/${baseUrl.auth.register}?role=doctor`,
+                url: `https://10.21.96.123:8000/auth/register?role=doctor`,
                 data: formdata,
                 headers: { 'Content-Type': undefined },
             }).then(function (res) {
-                // document.getElementById('form').reset();
                 console.log('result: ', res.status);
-                // $scope.loaderVisible = false;
                 if (res.status == 201) {
                     Toast.fire({
                         icon: "success",
@@ -116,15 +101,16 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
 
                 $http({
                     method: 'POST',
-                    url: `https://10.21.98.133:8000/auth/login/`,
+                    // url: `${baseUrl.url}/${baseUrl.auth.login}`,
+                    url: `https://10.21.96.123:8000/auth/login/`,
                     data: {
-                        email : formdata.get('email'),
-                        password : formdata.get('password')
+                        email: formdata.get('email'),
+                        password: formdata.get('password')
                     },
                     headers: { 'Content-Type': 'application/json' },
-                }).then(function(res) {
+                }).then(function (res) {
                     console.log(res);
-                }).catch(function(e){
+                }).catch(function (e) {
                     console.log(e);
                 })
 
@@ -135,15 +121,14 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
         }
     }
 
-    $http.get('https://10.21.98.133:8000/auth/dropdowns/').then(function (res) {
+    // $http.get(`${baseUrl.url}/${baseUrl.auth.dropdowns}`).then(function (res) {
+    $http.get(`https://10.21.96.123:8000/auth/dropdowns/`).then(function (res) {
         console.log('result: ', res.data);
         $scope.genders = res.data.genders;
-        // $scope.bloodGroups = res.data.blood_groups;
         $scope.specializations = res.data.specializations;
         $scope.qualifications = res.data.qualifications;
     }).catch(function (e) {
 
     });
 
-    // $http.get('https://10.21.98.133:8000/auth/gender/')
 }]);

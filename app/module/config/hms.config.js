@@ -1,4 +1,6 @@
-const myInterceptor = function ($q, loaderService) {
+
+
+const myInterceptor = function ($q) {
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -10,42 +12,42 @@ const myInterceptor = function ($q, loaderService) {
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-    var count = 0;
+    // var count = 0;
     return {
         request: function (request) {
             request['withCredentials'] = true;
-            if (!request.url.endsWith('profile/')) loaderService.show();
-            count++;
+            // if (!request.url.endsWith('profile/')) loaderService.show();
+            // count++;
             return request;
         },
 
         requestError: function (error) {
-            count--;
-            if (count == 0) {
-                loaderService.hide();
-            }
+            // count--;
+            // if (count == 0) {
+            //     loaderService.hide();
+            // }
             return $q.reject(error);
         },
 
         response: function (result) {
-            count--;
-            if (count == 0) {
-                loaderService.hide();
-            }
-            loaderService.hide();
+            // count--;
+            // if (count == 0) {
+            //     loaderService.hide();
+            // }
+            // loaderService.hide();
             return result;
         },
 
         responseError: function (error) {
-            count--;
-            if (count == 0) {
-                loaderService.hide();
-            }
-            loaderService.hide();
+            // count--;
+            // if (count == 0) {
+            //     loaderService.hide();
+            // }
+            // loaderService.hide();
             if (!error.config.url.endsWith('profile/')) {
                 Toast.fire({
                     icon: "error",
-                    title: error.data ? (error.data.msg ? error.data.msg : "Something went wrong, Please try again!") : 'Something went wrong, Please try again!'
+                    title: error.data ? (error.data.error ? error.data.error : "Something went wrong, Please try again!") : 'Something went wrong, Please try again!'
                 });
             }
             return $q.reject(error);
@@ -56,7 +58,7 @@ const myInterceptor = function ($q, loaderService) {
 
 hms.config(function ($stateProvider,$httpProvider,$locationProvider) {
     $locationProvider.hashPrefix('');
-    // $httpProvider.interceptors.push(myInterceptor);
+    $httpProvider.interceptors.push(myInterceptor);
 
     let landingState = {
         name: 'landing',
@@ -81,7 +83,8 @@ hms.config(function ($stateProvider,$httpProvider,$locationProvider) {
     let loginState = {
         name: 'login',
         url: '/login',
-        templateUrl: 'app/src/auth/login/login.html'
+        templateUrl: 'app/src/auth/login/login.html',
+        controller: 'loginController'
     }
 
     $stateProvider.state(landingState);

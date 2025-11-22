@@ -86,7 +86,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
             });
             return;
         }
-        
+
         if (fileValidation(document.getElementById('formFile'))) {
             // const form = document.getElementById('form');
             // const formData = new FormData(form);
@@ -94,7 +94,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
             // $scope.loaderVisible = true;
             $http({
                 method: 'POST',
-                url: `https://10.21.98.133:8000/auth/register?role=patient`,
+                url: `https://10.21.96.123:8000/auth/register?role=patient`,
                 data: formdata,
                 headers: { 'Content-Type': undefined },
             }).then(function (res) {
@@ -106,7 +106,20 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
                         icon: "success",
                         title: " User registered successfully!"
                     });
-                    $state.go('login');
+                    $http({
+                        method: 'POST',
+                        url: `https://10.21.96.123:8000/auth/login/`,
+                        data: {
+                            email: formdata.get('email'),
+                            password: formdata.get('password')
+                        },
+                        headers: { 'Content-Type': 'application/json' },
+                    }).then(function (res) {
+                        console.log(res);
+                    }).catch(function (e) {
+                        console.log(e);
+                    })
+                    // $state.go('login');
                 }
             }).catch(function (e) {
 
@@ -114,7 +127,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
         }
     }
 
-    $http.get('https://10.21.98.133:8000/auth/dropdowns/').then(function (res) {
+    $http.get('https://10.21.96.123:8000/auth/dropdowns/').then(function (res) {
         console.log('result: ', res.data);
         $scope.genders = res.data.genders;
         $scope.bloodGroups = res.data.blood_groups;

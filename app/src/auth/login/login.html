@@ -31,14 +31,14 @@
         </div>
     </div>
 </nav>
-<div class=" border-black d-flex flex-column justify-content-center align-items-center" ng-controller="loginController">
+<div class=" border-black d-flex flex-column justify-content-center align-items-center">
     <div ng-if="loaderVisible" class="loader"></div>
     <div ng-hide="loaderVisible" class="rounded-4 d-flex justify-content-center align-items-lg-center"
         id="loginFormContainer">
-        <div class="w-50 h-100">
-            <img src="app/public/login.avif" class="d-none d-lg-block rounded-start-4 object-fit-cover">
+        <div class="w-45 h-100">
+            <img src="app/public/login.png" class="w-100 d-none d-lg-block rounded-start-4 object-fit-cover">
         </div>
-        <form class="w-50 p-4 rounded-4" id="form" ng-submit="login()">
+        <form class=" p-4 rounded-4" id="form" ng-submit="login()">
 
             <div class="gap-3 d-flex align-items-center">
                 <!-- <img src="../images/bigBlogger.png" class="mb-2" alt="icon"> -->
