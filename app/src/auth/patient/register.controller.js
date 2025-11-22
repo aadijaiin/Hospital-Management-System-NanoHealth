@@ -1,4 +1,4 @@
-hms.controller('patientRegisterController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
+hms.controller('patientRegisterController', ['$scope', '$http', '$state', 'baseUrl', function ($scope, $http, $state, baseUrl) {
 
     $scope.showPassState = 'Show'
     $scope.showHidePass = function () {
@@ -94,7 +94,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
             // $scope.loaderVisible = true;
             $http({
                 method: 'POST',
-                url: `https://10.21.96.123:8000/auth/register?role=patient`,
+                url: `${baseUrl.url}/${baseUrl.auth.register}?role=patient`,
                 data: formdata,
                 headers: { 'Content-Type': undefined },
             }).then(function (res) {
@@ -108,7 +108,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
                     });
                     $http({
                         method: 'POST',
-                        url: `https://10.21.96.123:8000/auth/login/`,
+                        url: `${baseUrl.url}/${baseUrl.auth.login}`,
                         data: {
                             email: formdata.get('email'),
                             password: formdata.get('password')
@@ -127,7 +127,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', functi
         }
     }
 
-    $http.get('https://10.21.96.123:8000/auth/dropdowns/').then(function (res) {
+    $http.get(`${baseUrl.url}/${baseUrl.auth.dropdowns}`).then(function (res) {
         console.log('result: ', res.data);
         $scope.genders = res.data.genders;
         $scope.bloodGroups = res.data.blood_groups;

@@ -1,6 +1,6 @@
 
 
-hms.controller('doctorRegisterController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
+hms.controller('doctorRegisterController', ['$scope', '$http', '$state', 'baseUrl', function ($scope, $http, $state, baseUrl) {
 
     $scope.showPassState = 'Show'
     $scope.showHidePass = function () {
@@ -85,8 +85,8 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
             console.log('formData: ', Array.from(formdata))
             $http({
                 method: 'POST',
-                // url: `${baseUrl.url}/${baseUrl.auth.register}?role=doctor`,
-                url: `https://10.21.96.123:8000/auth/register?role=doctor`,
+                url: `${baseUrl.url}/${baseUrl.auth.register}?role=doctor`,
+                // url: `https://10.21.96.123:8000/auth/register?role=doctor`,
                 data: formdata,
                 headers: { 'Content-Type': undefined },
             }).then(function (res) {
@@ -101,8 +101,8 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
 
                 $http({
                     method: 'POST',
-                    // url: `${baseUrl.url}/${baseUrl.auth.login}`,
-                    url: `https://10.21.96.123:8000/auth/login/`,
+                    url: `${baseUrl.url}/${baseUrl.auth.login}`,
+                    // url: `https://10.21.96.123:8000/auth/login/`,
                     data: {
                         email: formdata.get('email'),
                         password: formdata.get('password')
@@ -121,8 +121,8 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', functio
         }
     }
 
-    // $http.get(`${baseUrl.url}/${baseUrl.auth.dropdowns}`).then(function (res) {
-    $http.get(`https://10.21.96.123:8000/auth/dropdowns/`).then(function (res) {
+    // $http.get(`https://10.21.96.123:8000/auth/dropdowns/`).then(function (res) {
+    $http.get(`${baseUrl.url}/${baseUrl.auth.dropdowns}`).then(function (res) {
         console.log('result: ', res.data);
         $scope.genders = res.data.genders;
         $scope.specializations = res.data.specializations;

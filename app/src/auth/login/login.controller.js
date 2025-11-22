@@ -1,4 +1,4 @@
-hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', function ($rootScope, $scope, $http, $state) {
+hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', 'baseUrl', function ($rootScope, $scope, $http, $state, baseUrl) {
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -40,7 +40,7 @@ hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', fu
         }
         $http({
             method: 'POST',
-            url: `https://10.21.96.123:8000/auth/login/`,
+            url: `${baseUrl.url}/${baseUrl.auth.login}`,
             data: $scope.user,
             headers: {
                 'Content-Type': 'application/json',
