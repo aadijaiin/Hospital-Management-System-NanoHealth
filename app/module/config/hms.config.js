@@ -1,5 +1,4 @@
 
-
 const myInterceptor = function ($q) {
     const Toast = Swal.mixin({
         toast: true,
@@ -56,7 +55,9 @@ const myInterceptor = function ($q) {
     };
 };
 
-hms.config(function ($stateProvider,$httpProvider,$locationProvider) {
+
+hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
+    
     $locationProvider.hashPrefix('');
     $httpProvider.interceptors.push(myInterceptor);
 
@@ -67,16 +68,16 @@ hms.config(function ($stateProvider,$httpProvider,$locationProvider) {
     }
 
     let patientRegistrationState = {
-        name : 'patientRegistration',
+        name: 'patientRegistration',
         url: '/register-patient',
-        templateUrl : 'app/src/auth/patient/register.html',
+        templateUrl: 'app/src/auth/patient/register.html',
         controller: 'patientRegisterController'
     }
 
     let doctorRegistrationState = {
-        name : 'doctorRegistration',
+        name: 'doctorRegistration',
         url: '/register-doctor',
-        templateUrl : 'app/src/auth/doctor/register.html',
+        templateUrl: 'app/src/auth/doctor/register.html',
         controller: 'doctorRegisterController'
     }
 
@@ -87,9 +88,25 @@ hms.config(function ($stateProvider,$httpProvider,$locationProvider) {
         controller: 'loginController'
     }
 
+    let homeState = {
+        name : 'home', 
+        url: '/home',
+        templateUrl: 'app/src/patient/home.html',
+        controller: 'homeController'
+    }
+
+    let appointmentState = {
+        name : 'appointment', 
+        url: '/book-appointment',
+        templateUrl: 'app/src/patient/appointment/appointment.html',
+        controller: 'appointmentController'
+    }
+
     $stateProvider.state(landingState);
     $stateProvider.state(patientRegistrationState);
     $stateProvider.state(doctorRegistrationState);
     $stateProvider.state(loginState);
+    $stateProvider.state(homeState);
+    $stateProvider.state(appointmentState);
 
 })

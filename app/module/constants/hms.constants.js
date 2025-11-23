@@ -3,6 +3,11 @@ hms.constant('baseUrl', {
     auth: {
         register: "auth/register",
         login: "auth/login/",
-        dropdowns : "auth/dropdowns/"
+        dropdowns : "auth/dropdowns/",
+        profile: "auth/profile/",
+    },
+    patient: {
+        getDoctors: 'patient/doctors/'
     }
+
 });
