@@ -7,7 +7,9 @@ hms.constant('baseUrl', {
         profile: "auth/profile/",
     },
     patient: {
-        getDoctors: 'patient/doctors/'
+        getDoctors: 'patient/doctors/',
+        bookAppointment: 'patient/bookAppointment/',
+        // appointments: "patient/appointments/"
     }
 
 });
