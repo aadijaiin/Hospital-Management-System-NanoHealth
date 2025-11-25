@@ -110,6 +110,7 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', 'baseUr
                     headers: { 'Content-Type': 'application/json' },
                 }).then(function (res) {
                     console.log(res);
+                    $state.go('home');
                 }).catch(function (e) {
                     console.log(e);
                 })

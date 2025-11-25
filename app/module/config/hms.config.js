@@ -102,11 +102,18 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
         controller: 'appointmentController'
     }
 
+    let appointmentHistoryState = {
+        name : 'appointmentHistory',
+        url : '/appointment-history',
+        templateUrl: 'app/src/patient/appointmentHistory/appointmentHistory.html'
+    }
+
     $stateProvider.state(landingState);
     $stateProvider.state(patientRegistrationState);
     $stateProvider.state(doctorRegistrationState);
     $stateProvider.state(loginState);
     $stateProvider.state(homeState);
     $stateProvider.state(appointmentState);
+    $stateProvider.state(appointmentHistoryState);
 
 })

@@ -10,6 +10,8 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
+
+    $scope.today = new Date().toLocaleDateString('sv-SE') + 'T' + new Date().toTimeString().slice(0,5);
     if(!$rootScope.user && !localStorage.getItem('user')){
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
@@ -34,19 +36,38 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
     }
 
     $scope.getDoctors();
-
+    $scope.docToVisit = function () {
+        $scope.doctor = $scope.doctors.filter(function(d){
+            return d.id == $scope.doc
+        })[0];
+    }
+    $scope.timeOfVisit = function () {
+        console.log($scope.datetime.toString().slice(0,15))
+        $scope.date = $scope.datetime.toString().slice(0,15);
+        $scope.time = $scope.datetime.toString().slice(16,21);
+    }
     $scope.bookAppointment = function () {
         const appointmentForm = new FormData(document.getElementById('appointmentForm'));
-        // const date = {
-        //     date : appointmentForm.get('slot').split('T')[0]
-        // }
-        // const time = {
-        //     time : appointmentForm.get('slot').split('T')[1]
-        // }
-        $scope.date = appointmentForm.get('slot').split('T')[0];
-        $scope.time = appointmentForm.get('slot').split('T')[1];
+        // $scope.date = appointmentForm.get('slot').split('T')[0];
+        // $scope.time = appointmentForm.get('slot').split('T')[1];
         appointmentForm.append('date', appointmentForm.get('slot').split('T')[0]);
         appointmentForm.append('time', appointmentForm.get('slot').split('T')[1]);
+        if(appointmentForm.get('reason_to_visit').trim().length < 2){
+            Toast.fire({
+                icon: "error",
+                text: "Please enter a valid reason of visit!"
+            })
+            return;
+        } else if (new Date($scope.date).getDate() - new Date().getDate() < 3){
+            Toast.fire({
+                icon: "error",
+                text: "Appointment date must be valid!"
+            })
+            return;
+        }
+        console.log(new Date($scope.date).getDate())
+        console.log(new Date().getDate());
+        console.log('diff : ', new Date($scope.date).getDate() - new Date().getDate())
         console.log(...appointmentForm.entries());
         $http({
             method: 'POST',

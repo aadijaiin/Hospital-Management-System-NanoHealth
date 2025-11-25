@@ -27,20 +27,6 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', 'baseU
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-    // $scope.getUser = function () {
-    //     // $scope.loaderVisible = true;
-    //     $http({
-    //         method: 'GET',
-    //         url: `${baseUrl.url}/${baseUrl.account.profile}`,
-    //     }).then(function (res) {
-    //         // $scope.loaderVisible = false;
-    //         $state.go('home')
-    //     }).catch(function (e) {
-    //         // $scope.loaderVisible = false;
-    //         console.log('Server Unreachable')
-    //     })
-    // }
-    // $scope.getUser();
 
     function fileValidation(fileInput) {
         var filePath = fileInput.value;
@@ -72,7 +58,8 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', 'baseU
             });
             return;
         }
-        if (!formdata.get('phone_no')) {
+        var phoneReg = /^[6-9]\d{9}$/;
+        if (!formdata.get('phone_no') || formdata.get('phone_no') <= 0 || !phoneReg.exec(formdata.get('phone_no'))) {
             Toast.fire({
                 icon: "error",
                 title: 'Please enter a valid phone number!'
@@ -116,6 +103,7 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', 'baseU
                         headers: { 'Content-Type': 'application/json' },
                     }).then(function (res) {
                         console.log(res);
+                        $state.go('home');
                     }).catch(function (e) {
                         console.log(e);
                     })

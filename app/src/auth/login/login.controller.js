@@ -39,7 +39,10 @@ hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', 'b
                 'Content-Type': 'application/json',
             }
         }).then(function (res) {
-
+            Toast.fire({
+                icon : 'success', 
+                text : res.data.msg
+            })
             $rootScope.getUser()
             $state.go('home')
 

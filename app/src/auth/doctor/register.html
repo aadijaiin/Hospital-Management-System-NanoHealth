@@ -61,7 +61,7 @@
                         <p class="mb-2 fw-medium">Gender <span class="text-danger">*</span></p>
                         <select class="form-select" name="gender" aria-label="Gender" required>
                             <option value="" selected disabled="disabled">Select</option>
-                            <option ng-repeat="gender in genders" value="{{gender.key}}">{{gender.name}}</option>
+                            <option ng-repeat="gender in genders" value="{{gender.id}}">{{gender.name}}</option>
                         </select>
                     </div>
                     <div class="col">
@@ -147,7 +147,7 @@
                         <p class="mb-2 fw-medium">Specialization <span class="text-danger">*</span></p>
                         <select class="form-select" name="specialization" required>
                             <option value="" disabled selected>Select</option>
-                            <option ng-repeat="specialization in specializations" value="{{specialization.key}}">
+                            <option ng-repeat="specialization in specializations" value="{{specialization.id}}">
                                 {{specialization.name}}</option>
                         </select>
                     </div>
@@ -155,7 +155,7 @@
                         <p class="mb-2 fw-medium">Qualification <span class="text-danger">*</span></p>
                         <select class="form-select" name="qualification" required>
                             <option value="" disabled selected>Select</option>
-                            <option ng-repeat="qualification in qualifications" value="{{qualification.key}}">
+                            <option ng-repeat="qualification in qualifications" value="{{qualification.id}}">
                                 {{qualification.name}}</option>
                         </select>
                     </div>
