@@ -23,7 +23,7 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
         })
     }
     else if(!$rootScope.user && localStorage.getItem('user')){
-        $scope.user = JSON.parse(localStorage.getItem('user'));
+        $rootScope.user = JSON.parse(localStorage.getItem('user'));
     }
     $scope.getDoctors = function () {
         console.log('getting the list of doctors')
@@ -88,12 +88,12 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
         })
     }
 
-    $scope.getAppointments = function () {
-        $http.get(`${baseUrl.url}/${baseUrl.patient.bookAppointment}`).then(function(res){
-            console.log(res);
-        }).catch(function(e){
-            console.log(e);
-        })
-    }
-    $scope.getAppointments();
+    // $scope.getAppointments = function () {
+    //     $http.get(`${baseUrl.url}/${baseUrl.patient.bookAppointment}`).then(function(res){
+    //         console.log(res);
+    //     }).catch(function(e){
+    //         console.log(e);
+    //     })
+    // }
+    // $scope.getAppointments();
 }]);

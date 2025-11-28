@@ -1,5 +1,5 @@
 hms.constant('baseUrl', {
-    url: "https://10.21.97.235:8000",
+    url: "https://10.21.97.46:8000",
     auth: {
         register: "auth/register",
         login: "auth/login/",

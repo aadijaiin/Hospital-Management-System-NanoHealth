@@ -1,61 +1,67 @@
 <div class="d-flex h-100">
-
-    <div class="flex-shrink-0 p-3 bg-dark d-none d-md-block" style="width: 220px;">
-        <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <!-- <svg class="bi me-2" width="30" height="24">
-                <use xlink:href="#bootstrap"></use>
-            </svg> -->
-            <span class="fs-5 fw-semibold text-white">NanoHealth</span>
+    <!-- SideBar -->
+    <!-- <div class="flex-shrink-0 p-3 d-none d-md-block border" style="width: 280px; background-color: #f9fbfc;">
+        <a href="/"
+            class="d-flex align-items-center justify-content-between pb-3 link-dark text-decoration-none border-bottom">
+            <span class="fs-4 fw-medium"><img src="app/public/logo.svg" height="24" class="pe-2"
+                    alt="">NanoHealth</span>
             <i class="bi bi-arrow-left-square-fill"></i>
         </a>
+        <form class="d-flex mt-3 mb-3" role="search">
+            <div class="form-control shadow-sm d-flex align-items-center p-0 rounded-pill"
+                style="background-color: #f1f2f6">
+                <input class="form-control bg-transparent border-0 rounded-pill" placeholder="Search" />
+                <i class="bi px-2 bi-search"></i>
+            </div>
+        </form>
         <ul class="list-unstyled ps-0">
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse"
+            <li class="mb-2">
+                <button class="btn btn-toggle align-items-center rounded collapsed fs-5 p-0" data-bs-toggle="collapse"
                     data-bs-target="#home-collapse" aria-expanded="false">
-                    <i class="bi bi-house-door-fill"></i>
+                    <i class="bi bi-house-door"></i>
                     Home
                 </button>
                 <div class="collapse" id="home-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded text-white">Overview</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Updates</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Reports</a></li>
+                        <li><a href="#" class="link-dark rounded ">Overview</a></li>
+                        <li><a href="#" class="link-dark rounded ">Updates</a></li>
+                        <li><a href="#" class="link-dark rounded ">Reports</a></li>
                     </ul>
                 </div>
             </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse"
+            <li class="mb-2">
+                <button class="btn btn-toggle align-items-center rounded collapsed fs-5 p-0 " data-bs-toggle="collapse"
                     data-bs-target="#dashboard-collapse" aria-expanded="false">
                     <i class="bi bi-speedometer"></i>
                     Dashboard
                 </button>
                 <div class="collapse" id="dashboard-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded text-white">Overview</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Weekly</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Monthly</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Annually</a></li>
+                        <li><a href="#" class="link-dark rounded ">Overview</a></li>
+                        <li><a href="#" class="link-dark rounded ">Weekly</a></li>
+                        <li><a href="#" class="link-dark rounded ">Monthly</a></li>
+                        <li><a href="#" class="link-dark rounded ">Annually</a></li>
                     </ul>
                 </div>
             </li>
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse"
+            <li class="mb-2">
+                <button class="btn btn-toggle align-items-center rounded collapsed fs-5 p-0" data-bs-toggle="collapse"
                     data-bs-target="#orders-collapse" aria-expanded="false">
-                    <i class="bi bi-calendar-check-fill"></i>
+                    <i class="bi bi-calendar-check"></i>
                     Orders
                 </button>
                 <div class="collapse" id="orders-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded text-white">New</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Processed</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Shipped</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Returned</a></li>
+                        <li><a href="#" class="link-dark rounded ">New</a></li>
+                        <li><a href="#" class="link-dark rounded ">Processed</a></li>
+                        <li><a href="#" class="link-dark rounded ">Shipped</a></li>
+                        <li><a href="#" class="link-dark rounded ">Returned</a></li>
                     </ul>
                 </div>
             </li>
 
-            <li class="mb-1">
-                <button class="btn btn-toggle align-items-center rounded collapsed text-white" data-bs-toggle="collapse"
+            <li class="mb-2">
+                <button class="btn btn-toggle align-items-center rounded collapsed fs-5 p-0" data-bs-toggle="collapse"
                     data-bs-target="#account-collapse" aria-expanded="false">
                     <i class="bi bi-person-circle"></i>
 
@@ -63,39 +69,201 @@
                 </button>
                 <div class="collapse" id="account-collapse">
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                        <li><a href="#" class="link-dark rounded text-white">New</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">
+                        <li><a href="#" class="link-dark rounded ">New</a></li>
+                        <li><a href="#" class="link-dark rounded ">
                                 <i class="bi bi-person-circle"></i>
                                 Profile</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Settings</a></li>
-                        <li><a href="#" class="link-dark rounded text-white">Sign out</a></li>
+                        <li><a href="#" class="link-dark rounded ">Settings</a></li>
+                        <li><a href="#" class="link-dark rounded ">Sign out</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
-    </div>
-    <!-- <div class="w-auto px-5 h-100 overflow-auto mx-auto">
-        <h1>Appointment History</h1>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
     </div> -->
-    <main class="container">
-        <!-- <div class="d-flex align-items-center p-3 my-3 bg-purple rounded shadow-sm"> <img class="me-3" alt="" width="48"
-                height="38">
+    <!-- sidebar2 -->
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" ng-show="bigSideBar" style="width: 280px;">
+        <div class="d-flex align-items-center justify-content-between mb-3 mb-md-0 link-dark text-decoration-none">
+            <span class="fs-4"><img src="app/public/logo.svg" height="24" class="pe-2" alt="">NanoHealth</span>
+            <i class="bi bi-arrow-left-square-fill" ng-click="hideBigSideBar()"></i>
+        </div>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">
+                    <i class="bi bi-house-door"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-speedometer"></i>
+                    Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-calendar-check"></i>
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-person-circle"></i>
+                    Customers
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- small sidebar -->
+    <div class="d-flex flex-column flex-shrink-0 bg-light" ng-hide="bigSideBar"
+        style="width: 4.5rem;background-color: #f9fbfc;">
+        <div class="d-flex justify-content-center align-items-center p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
+            data-bs-placement="right" data-bs-original-title="Icon-only">
+            <img src="app/public/logo.svg" height="24" alt="">
+            <!-- <i class="bi bi-arrow-right-square-fill" ng-click="showBigSideBar()"></i> -->
+        </div>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+            <li class="nav-item">
+                <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title=""
+                    data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                    <i class="bi bi-house-door"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Dashboard">
+                    <i class="bi bi-speedometer"></i>
+
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Orders">
+                    <i class="bi bi-calendar-check"></i>
+
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Products">
+                    <i class="bi bi-person-circle"></i>
+
+                </a>
+            </li>
+        </ul>
+        <div class="dropdown border-top">
+            <a href="#"
+                class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+    <main class="container overflow-auto">
+        <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
+            <!-- <img class="me-3" src="/docs/5.3/assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38"> -->
             <div class="lh-1">
-                <h1 class="h6 mb-0 lh-1">Bootstrap</h1> <small>Since 2011</small>
+                <h1 class="h5 mb-0 lh-1">NanoHealth</h1>
             </div>
-        </div> -->
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <div class="d-flex justify-content-between align-items-center">
-                <h4 class="border-bottom pb-2 mb-0">Appointment histroy</h4>
-                <!-- sort and filter buttons -->
+        </div>
+        <div class="my-3 p-3 bg-body rounded shadow-sm" ng-if="todaysAppointments.length">
+            <h6 class="border-bottom pb-2 ">Today's Appointments</h6>
+            <div class="card mt-4" ng-repeat="appointment in todaysAppointments">
+                <div class="card-header">
+                    <span><i class="bi bi-calendar-check"> </i> {{appointment.appointment_date | date}}</span>
+                    <span class="badge text-bg-success float-end">{{appointment.status}}</span>
+
+                </div>
+                <div class="card-body">
+                    <div class="d-flex float-start gap-2">
+                        <img src={{pfpBaseUrl}}/auth/{{appointment.doctor.photo}} class="object-fit-cover" height="80"
+                            width="80" alt="">
+                        <div>
+                            <h6 class="card-title">Dr. {{appointment.doctor.first_name + ' ' +
+                                appointment.doctor.last_name}}</h6>
+                            <p class="mb-0">{{appointment.appointment_date}}, {{appointment.appointment_time}}</p>
+
+                            <p class="mb-0">₹2000</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex text-body-secondary pt-3"> <svg aria-label="Placeholder: 32x32"
-                    class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32"
-                    preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect>
-                    <!-- <text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text> -->
-                </svg>
+        </div>
+        <div class="my-3 p-3 bg-body rounded shadow-sm" ng-if="upComingAppointments.length">
+            <h6 class="border-bottom pb-2 ">Upcoming Appointments</h6>
+            <div class="card mt-4" ng-repeat="appointment in upComingAppointments">
+                <div class="card-header">
+                    <span><i class="bi bi-calendar-check"> </i> {{appointment.appointment_date | date}}</span>
+                    <span class="badge text-bg-success float-end">{{appointment.status}}</span>
+
+                </div>
+                <div class="card-body">
+                    <div class="d-flex float-start gap-2">
+                        <img src={{pfpBaseUrl}}/auth/{{appointment.doctor.photo}} class="object-fit-cover" height="80"
+                            width="80" alt="">
+                        <div>
+                            <h6 class="card-title">Dr. {{appointment.doctor.first_name + ' ' +
+                                appointment.doctor.last_name}}</h6>
+                            <p class="mb-0">{{appointment.appointment_date}}, {{appointment.appointment_time}}</p>
+
+                            <p class="mb-0">₹2000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="d-flex text-body-secondary pt-3" ng-repeat="appointment in appointments">
+                <strong class="d-block text-gray-dark">{{user.first_name + " " + user.last_name}}</strong>
+            </div> -->
+            <!-- <div class="d-flex text-body-secondary pt-3">
+                <p class="pb-3 mb-0 small lh-sm border-bottom"> <strong
+                        class="d-block text-gray-dark">@username</strong>
+                    Some representative placeholder content, with some information about this user. Imagine this being
+                    some sort of status update, perhaps?
+                </p>
+            </div> -->
+            <!-- <div class="d-flex text-body-secondary pt-3">
                 <p class="pb-3 mb-0 small lh-sm border-bottom"> <strong
                         class="d-block text-gray-dark">@username</strong>
                     Some representative placeholder content, with some information about this user. Imagine this being
@@ -103,72 +271,61 @@
                 </p>
             </div>
             <div class="d-flex text-body-secondary pt-3">
-                <svg aria-label="Placeholder: 32x32" class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32"
-                    preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#e83e8c"></rect>
-                    <!-- <text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text> -->
-                </svg>
                 <p class="pb-3 mb-0 small lh-sm border-bottom"> <strong
                         class="d-block text-gray-dark">@username</strong>
-                    Some more representative placeholder content, related to this other user. Another status update,
-                    perhaps.
+                    Some representative placeholder content, with some information about this user. Imagine this being
+                    some sort of status update, perhaps?
                 </p>
+            </div> -->
+        </div>
+        <div class="my-3 p-3 bg-body rounded shadow-sm" ng-if="pastAppointments.length">
+            <h6 class="border-bottom pb-2">Past Appointments</h6>
+            <div class="card mt-4" ng-repeat="appointment in pastAppointments">
+                <div class="card-header">
+                    <span><i class="bi bi-calendar-check"> </i> {{appointment.appointment_date | date}}</span>
+                    <span class="badge text-bg-success float-end">{{appointment.status}}</span>
+
+                </div>
+                <div class="card-body">
+                    <div class="d-flex float-start gap-2">
+                        <img src={{pfpBaseUrl}}/auth/{{appointment.doctor.photo}} class="object-fit-cover" height="80"
+                            width="80" alt="">
+                        <div>
+                            <h6 class="card-title">Dr. {{appointment.doctor.first_name + ' ' +
+                                appointment.doctor.last_name}}</h6>
+                            <p class="mb-0">{{appointment.appointment_date}}, {{appointment.appointment_time}}</p>
+
+                            <p class="mb-0">₹2000</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <h6 class="border-bottom pb-2 mb-0">Past Appointments</h6>
+            <div class="d-flex text-body-secondary pt-3">
+
+                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
+                    <div class="d-flex justify-content-between"> <strong class="text-gray-dark">Full Name</strong> <a
+                            href="#">Follow</a> </div> <span class="d-block">@username</span>
+                </div>
             </div>
             <div class="d-flex text-body-secondary pt-3">
-                <svg aria-label="Placeholder: 32x32" class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32"
-                    preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#6f42c1"></rect>
-                </svg>
-                <p class="pb-3 mb-0 small lh-sm border-bottom"> <strong
-                        class="d-block text-gray-dark">@username</strong>
-                    This user also gets some representative placeholder content. Maybe they did something interesting,
-                    and you really want to highlight this in the recent updates.
-                </p>
-            </div>  -->
-            <!-- <small class="d-block text-end mt-3"> <a href="#">All updates</a> </small>
-        </div>
-        <div class="my-3 p-3 bg-body rounded shadow-sm">
-            <h6 class="border-bottom pb-2 mb-0">Suggestions</h6>
-            <div class="d-flex text-body-secondary pt-3"> <svg aria-label="Placeholder: 32x32"
-                    class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32"
-                    preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                        dy=".3em">32x32</text>
-                </svg>
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between"> <strong class="text-gray-dark">Full Name</strong> <a
                             href="#">Follow</a> </div> <span class="d-block">@username</span>
                 </div>
             </div>
-            <div class="d-flex text-body-secondary pt-3"> <svg aria-label="Placeholder: 32x32"
-                    class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32"
-                    preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                        dy=".3em">32x32</text>
-                </svg>
+            <div class="d-flex text-body-secondary pt-3">
                 <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
                     <div class="d-flex justify-content-between"> <strong class="text-gray-dark">Full Name</strong> <a
                             href="#">Follow</a> </div> <span class="d-block">@username</span>
                 </div>
-            </div>
-            <div class="d-flex text-body-secondary pt-3"> <svg aria-label="Placeholder: 32x32"
-                    class="bd-placeholder-img flex-shrink-0 me-2 rounded" height="32"
-                    preserveAspectRatio="xMidYMid slice" role="img" width="32" xmlns="http://www.w3.org/2000/svg">
-                    <title>Placeholder</title>
-                    <rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff"
-                        dy=".3em">32x32</text>
-                </svg>
-                <div class="pb-3 mb-0 small lh-sm border-bottom w-100">
-                    <div class="d-flex justify-content-between"> <strong class="text-gray-dark">Full Name</strong> <a
-                            href="#">Follow</a> </div> <span class="d-block">@username</span>
-                </div>
-            </div> <small class="d-block text-end mt-3"> <a href="#">All suggestions</a> </small>
+            </div> -->
         </div>
     </main>
-
-
 </div>
+
+<style>
+    .card {
+        cursor: pointer;
+    }
+</style>

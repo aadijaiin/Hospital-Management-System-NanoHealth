@@ -44,7 +44,9 @@ hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', 'b
                 text : res.data.msg
             })
             $rootScope.getUser()
-            $state.go('home')
+            if(res.data.role == 'Patient') $state.go('home');
+            else if (res.data.role == 'Doctor') $state.go('doctor');
+            else if (res.data.role == 'Receptionist') $state.go('receptionist');
 
         }).catch(function (e) {
             console.log('error: ', e);

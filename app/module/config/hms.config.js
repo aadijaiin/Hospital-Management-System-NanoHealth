@@ -1,5 +1,6 @@
 
-const myInterceptor = function ($q) {
+myInterceptor.$inject = ['$q', 'loaderService'];
+function myInterceptor ($q, loaderService) {
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -11,38 +12,38 @@ const myInterceptor = function ($q) {
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-    // var count = 0;
+    var count = 0;
     return {
         request: function (request) {
             request['withCredentials'] = true;
-            // if (!request.url.endsWith('profile/')) loaderService.show();
-            // count++;
+            loaderService.show();
+            count++;
             return request;
         },
 
         requestError: function (error) {
-            // count--;
-            // if (count == 0) {
-            //     loaderService.hide();
-            // }
+            count--;
+            if (count == 0) {
+                loaderService.hide();
+            }
             return $q.reject(error);
         },
 
         response: function (result) {
-            // count--;
-            // if (count == 0) {
-            //     loaderService.hide();
-            // }
-            // loaderService.hide();
+            count--;
+            if (count == 0) {
+                loaderService.hide();
+            }
+            loaderService.hide();
             return result;
         },
 
         responseError: function (error) {
-            // count--;
-            // if (count == 0) {
-            //     loaderService.hide();
-            // }
-            // loaderService.hide();
+            count--;
+            if (count == 0) {
+                loaderService.hide();
+            }
+            loaderService.hide();
             if (!error.config.url.endsWith('profile/')) {
                 Toast.fire({
                     icon: "error",
@@ -53,13 +54,13 @@ const myInterceptor = function ($q) {
         }
 
     };
-};
+}
 
-
+hms.factory('myInterceptor', myInterceptor);
 hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     
     $locationProvider.hashPrefix('');
-    $httpProvider.interceptors.push(myInterceptor);
+    $httpProvider.interceptors.push('myInterceptor');
 
     let landingState = {
         name: 'landing',
@@ -105,7 +106,22 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     let appointmentHistoryState = {
         name : 'appointmentHistory',
         url : '/appointment-history',
-        templateUrl: 'app/src/patient/appointmentHistory/appointmentHistory.html'
+        templateUrl: 'app/src/patient/appointmentHistory/appointmentHistory.html',
+        controller: 'appointmentHistoryController'
+    }
+
+    let receptionistHomeState = {
+        name: 'receptionist',
+        url: '/receptionist/home',
+        templateUrl: 'app/src/receptionist/home/home.html',
+        controller: 'receptionistHomeController'
+    }
+
+    let manageAppointmentsState = {
+        name : 'manageAppointments',
+        url : '/receptionist/manage-appointments',
+        templateUrl : 'app/src/receptionist/manageAppointments/manageAppointments.html',
+        controller : 'manageAppointmentsController'
     }
 
     $stateProvider.state(landingState);
@@ -115,5 +131,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     $stateProvider.state(homeState);
     $stateProvider.state(appointmentState);
     $stateProvider.state(appointmentHistoryState);
+    $stateProvider.state(receptionistHomeState);
+    $stateProvider.state(manageAppointmentsState);
 
 })

@@ -1,0 +1,122 @@
+<div class="d-flex h-100">
+    <!-- sidebar -->
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" ng-show="bigSideBar" style="width: 280px;">
+        <div class="d-flex align-items-center justify-content-between mb-3 mb-md-0 link-dark text-decoration-none">
+            <span class="fs-4"><img src="app/public/logo.svg" height="24" class="pe-2" alt="">NanoHealth</span>
+            <i class="bi bi-arrow-left-square-fill" ng-click="hideBigSideBar()"></i>
+        </div>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="#" class="nav-link active" aria-current="page">
+                    <i class="bi bi-house-door"></i>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a ui-sref="manageAppointments" class="nav-link link-dark">
+                    <i class="bi bi-speedometer"></i>
+                    Appointments
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-calendar-check"></i>
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link link-dark">
+                    <i class="bi bi-person-circle"></i>
+                    Customers
+                </a>
+            </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- small sidebar -->
+    <div class="d-flex flex-column flex-shrink-0 bg-light" ng-hide="bigSideBar"
+        style="width: 4.5rem;background-color: #f9fbfc;">
+        <div class="d-flex justify-content-center align-items-center p-3 link-dark text-decoration-none" title=""
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+            <img src="app/public/logo.svg" height="24" alt="">
+            <!-- <i class="bi bi-arrow-right-square-fill" ng-click="showBigSideBar()"></i> -->
+        </div>
+        <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+            <li class="nav-item">
+                <a href="#" class="nav-link active py-3 border-bottom" aria-current="page" title=""
+                    data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
+                    <i class="bi bi-house-door"></i>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Dashboard">
+                    <i class="bi bi-speedometer"></i>
+
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Orders">
+                    <i class="bi bi-calendar-check"></i>
+
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    data-bs-placement="right" data-bs-original-title="Products">
+                    <i class="bi bi-person-circle"></i>
+
+                </a>
+            </li>
+        </ul>
+        <div class="dropdown border-top">
+            <a href="#"
+                class="d-flex align-items-center justify-content-center p-3 link-dark text-decoration-none dropdown-toggle"
+                id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="mdo" width="24" height="24" class="rounded-circle">
+            </a>
+            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
+                <li><a class="dropdown-item" href="#">New project...</a></li>
+                <li><a class="dropdown-item" href="#">Settings</a></li>
+                <li><a class="dropdown-item" href="#">Profile</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">Sign out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main class="container-fluid overflow-auto">
+        <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
+            <!-- <img class="me-3" src="/docs/5.3/assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38"> -->
+            <div class="lh-1">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <!-- <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Library</li>
+                    </ol> -->
+                    Breadcrumb
+                </nav>
+            </div>
+        </div>
+    </main>
+</div>
