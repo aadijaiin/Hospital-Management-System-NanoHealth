@@ -112,16 +112,37 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
 
     let receptionistHomeState = {
         name: 'receptionist',
-        url: '/receptionist/home',
+        url: '/receptionist',
         templateUrl: 'app/src/receptionist/home/home.html',
         controller: 'receptionistHomeController'
     }
 
     let manageAppointmentsState = {
-        name : 'manageAppointments',
-        url : '/receptionist/manage-appointments',
+        name : 'receptionist.manageAppointments',
+        url : '/manage-appointments',
         templateUrl : 'app/src/receptionist/manageAppointments/manageAppointments.html',
         controller : 'manageAppointmentsController'
+    }
+
+    let manageDoctorsState = {
+        name : 'receptionist.manageDoctors',
+        url : '/manage-doctors',
+        templateUrl : 'app/src/receptionist/manageDoctors/manageDoctors.html',
+        controller : 'manageDoctorsController'
+    }
+
+    let managePatientsState = {
+        name : 'receptionist.managePatients',
+        url : '/manage-patients',
+        templateUrl : 'app/src/receptionist/managePatients/managePatients.html',
+        controller : 'managePatientsController'
+    }
+
+    let doctorFullViewState = {
+        name : 'doctor',
+        url : '/receptionist/doctor/:id',
+        templateUrl : 'app/src/receptionist/manageDoctors/doctor/doctor.html',
+        controller: 'doctorFullViewController'
     }
 
     $stateProvider.state(landingState);
@@ -133,5 +154,8 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     $stateProvider.state(appointmentHistoryState);
     $stateProvider.state(receptionistHomeState);
     $stateProvider.state(manageAppointmentsState);
+    $stateProvider.state(manageDoctorsState);
+    $stateProvider.state(managePatientsState);
+    $stateProvider.state(doctorFullViewState);
 
 })

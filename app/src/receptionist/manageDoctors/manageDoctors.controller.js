@@ -1,5 +1,5 @@
 
-hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
+hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
     if(!$rootScope.user && !localStorage.getItem('user')){
         //get user function
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
@@ -42,12 +42,12 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
                 })[0]
 
                 patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
-
                 appointment['doctor'] = doctor;
                 appointment['patient'] = patient;
             }
 
             for(let doctor of $scope.doctors) {
+                doctor.age = new Date().getFullYear() - new Date(doctor.D_O_B).getFullYear();
                 let temp = $scope.appointments.filter(function (appointment) {
                     return appointment.doctor_id === doctor.id;
                 });
@@ -55,6 +55,10 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
                 for(let t of temp) {
                     doctor['patients'].push(t.patient);
                 }
+            }
+
+            for(let patient of $scope.patients) {
+                patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
             }
 
             console.log($scope.doctors)
@@ -66,8 +70,11 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
     $scope.getData();
 
 
-    $scope.editAppointmentStatus = function (id) {
-        console.log(id, typeof id);
-    }
+    // $scope.editAppointmentStatus = function (id) {
+    //     console.log(id, typeof id);
+    // }
+
+
+
 
 }]);

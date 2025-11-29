@@ -53,9 +53,9 @@
     <!-- small sidebar -->
     <div class="d-flex flex-column flex-shrink-0 bg-light" ng-hide="bigSideBar"
         style="width: 4.5rem;background-color: #f9fbfc;">
-        <div class="d-flex justify-content-center align-items-center p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
-            data-bs-placement="right" data-bs-original-title="Icon-only">
-            <img src="app/public/logo.svg" height="24" alt="">
+        <div class="d-flex justify-content-center align-items-center p-3 link-dark text-decoration-none" title=""
+            data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Icon-only">
+            <img src="app/public/logo.svg" height="24" alt="" ng-click="showBigSideBar()">
             <!-- <i class="bi bi-arrow-right-square-fill" ng-click="showBigSideBar()"></i> -->
         </div>
         <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
@@ -105,14 +105,15 @@
         </div>
     </div>
 
-    <main class="container overflow-auto">
+    <ui-view class="container-fluid overflow-auto">
         <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
             <!-- <img class="me-3" src="/docs/5.3/assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38"> -->
             <div class="lh-1">
-                <h1 class="h5 mb-0 lh-1"> <img src="app/public/logo.svg" height="24" class="pe-2" alt=""> NanoHealth</h1>
+                <h1 class="h5 mb-0 lh-1"> <img src="app/public/logo.svg" height="24" class="pe-2" alt=""> NanoHealth
+                </h1>
             </div>
         </div>
-    </main>
+    </ui-view>
 </div>
 
 <style>

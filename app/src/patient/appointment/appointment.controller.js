@@ -58,7 +58,7 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
                 text: "Please enter a valid reason of visit!"
             })
             return;
-        } else if (new Date($scope.date).getDate() - new Date().getDate() < 3){
+        } else if (new Date($scope.date).getDate() - new Date().getDate() < 1){
             Toast.fire({
                 icon: "error",
                 text: "Appointment date must be valid!"

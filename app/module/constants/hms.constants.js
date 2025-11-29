@@ -1,5 +1,5 @@
 hms.constant('baseUrl', {
-    url: "https://10.21.97.46:8000",
+    url: "https://10.21.99.62:8000",
     auth: {
         register: "auth/register",
         login: "auth/login/",
@@ -10,4 +10,7 @@ hms.constant('baseUrl', {
         getDoctors: 'patient/doctors/',
         bookAppointment: 'patient/bookAppointment/',
     },
+    receptionist: {
+        data: 'reception/appointments_data/'
+    }
 });

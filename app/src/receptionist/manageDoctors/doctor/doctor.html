@@ -1,0 +1,65 @@
+<!-- <div class="d-flex h-100"> -->
+
+    <main role="main" class="container-fluid p-3 overflow-auto">
+        <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
+            class="chartjs-size-monitor">
+            <div class="chartjs-size-monitor-expand"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+            </div>
+            <div class="chartjs-size-monitor-shrink"
+                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h2">{{doctor.first_name}}</h1>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
+                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+            </form>
+        </div>
+
+        <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
+            style="display: block; width: 1152px; height: 486px;"></canvas> -->
+
+        <!-- <h2>Appointments</h2> -->
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <!-- <th>#</th> -->
+                        <th>Name</th>
+                        <th>No. of patients</th>
+                        <th>Specialization</th>
+                        <th>Qualification</th>
+                        <th>Experience</th>
+                        <!-- <th>Action</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="doctor in doctors | filter:query:strict">
+                        <td class="d-flex" ui-sref="doctor({id:doctor.id})"> <img
+                                src={{pfpBaseUrl}}/auth/{{doctor.doctor_photo}} width="44" height="44"
+                                class="rounded-circle pe-2 object-fit-cover" alt="">
+                            <div class="d-flex flex-column justify-content-center">
+                                <p class="p-0 m-0">{{doctor.first_name + " " +
+                                    doctor.last_name}}</p>
+                                <p class="fs-6 text-muted p-0 m-0">{{doctor.age}}, {{doctor.gender}}</p>
+                            </div>
+                        </td>
+                        <td>{{doctor.patients.length}}</td>
+                        <td>{{doctor.specialization_name}}</td>
+                        <td>{{doctor.qualification}}</td>
+                        <td>{{doctor.experience}}</td>
+                        <!-- <td>
+                            <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal" ng-click="editAppointmentStatus(appointment.id)"></i>
+
+                        </td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+<!-- </div> -->
