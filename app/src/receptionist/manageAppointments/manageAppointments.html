@@ -1,33 +1,34 @@
 <!-- <div class="d-flex h-100"> -->
-    <!-- modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Update Appointment Status</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="mb-3">
-                            <label for="recipient-name" class="col-form-label">Recipient:</label>
-                            <input type="text" class="form-control" id="recipient-name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="message-text" class="col-form-label">Message:</label>
-                            <textarea class="form-control" id="message-text"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+<!-- modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form class="modal-content" ng-submit="updateAppoinmentStatus()" id="updateAppoinmentStatusForm">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Appointment Status</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div >
+                    <select ng-model="rejected" required name="accepted" class="form-select" aria-label="Default select example">
+                        <option selected disabled value="">Status</option>
+                        <option value="True">Accept</option>
+                        <option  value="False">Reject</option>
+                    </select>
+                    <div class="mb-3"  ng-show="rejected == 'False'">
+                        <label for="message-text" class="col-form-label">Message:</label>
+                        <textarea name="reason_for_cancel" class="form-control" id="message-text"></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+        </form>
     </div>
+</div>
 
-    <!-- <main class="container-fluid overflow-auto">
+<!-- <main class="container-fluid overflow-auto">
         <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
             <div class="lh-1">
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
@@ -36,79 +37,69 @@
             </div>
         </div>
     </main> -->
-    <main role="main" class="container-fluid p-3 overflow-auto">
-        <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
-            class="chartjs-size-monitor">
-            <div class="chartjs-size-monitor-expand"
-                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-            </div>
-            <div class="chartjs-size-monitor-shrink"
-                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-            </div>
+<main role="main" class="container-fluid p-3 overflow-auto">
+    <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
+        class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
         </div>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Appointments</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-                <div class="btn-group mr-2">
-                    <button class="btn btn-sm btn-outline-secondary">Share</button>
-                    <button class="btn btn-sm btn-outline-secondary">Export</button>
-                </div>
-                <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-calendar">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    This week
-                </button>
-            </div>
+        <div class="chartjs-size-monitor-shrink"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
         </div>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Appointments</h1>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
+        </form>
+    </div>
 
-        <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
+    <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
             style="display: block; width: 1152px; height: 486px;"></canvas> -->
 
-        <!-- <h2>Appointments</h2> -->
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <!-- <th>#</th> -->
-                        <th>Patient</th>
-                        <th>Date</th>
-                        <th>Doctor</th>
-                        <th>Time</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="appointment in appointments">
-                        <td class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{appointment.patient.patient_photo}}
-                                width="44" height="44" class="rounded-circle pe-2 object-fit-cover" alt="">
-                            <div class="d-flex flex-column justify-content-center">
-                                <p class="p-0 m-0">{{appointment.patient.first_name + " " +
-                                    appointment.patient.last_name}}</p>
-                                <p class="fs-6 text-muted p-0 m-0">{{appointment.patient.age}}</p>
-                            </div>
-                        </td>
-                        <td>{{ appointment.appointment_date | date }}</td>
-                        <td><img src={{pfpBaseUrl}}/auth/{{appointment.doctor.doctor_photo}} height="44" width="44"
-                                class="rounded-circle pe-2 object-fit-cover" alt="">Dr. {{appointment.doctor.first_name
-                            + " " + appointment.doctor.last_name}}</td>
-                        <td>{{appointment.appointment_time.slice(0,5)}}</td>
-                        <td>
-                            <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                ng-click="editAppointmentStatus(appointment.id)"></i>
-                            <!-- <i class="bi bi-trash3 fs-5 text-danger"></i> -->
+    <!-- <h2>Appointments</h2> -->
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <!-- <th>#</th> -->
+                    <th>Patient</th>
+                    <th>Date</th>
+                    <th>Doctor</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="appointment in appointments | filter:query:strict">
+                    <td class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{appointment.patient.patient_photo}} width="44"
+                            height="44" class="rounded-circle pe-2 object-fit-cover" alt="">
+                        <div class="d-flex flex-column justify-content-center">
+                            <p class="p-0 m-0">{{appointment.patient.first_name + " " +
+                                appointment.patient.last_name}}</p>
+                            <p class="fs-6 text-muted p-0 m-0">{{appointment.patient.age}}</p>
+                        </div>
+                    </td>
+                    <td>{{ appointment.appointment_date | date }}</td>
+                    <td><img src={{pfpBaseUrl}}/auth/{{appointment.doctor.doctor_photo}} height="44" width="44"
+                            class="rounded-circle pe-2 object-fit-cover" alt="">Dr. {{appointment.doctor.first_name
+                        + " " + appointment.doctor.last_name}}</td>
+                    <td>{{appointment.appointment_time.slice(0,5)}}</td>
+                    <td ng-show="appointment.status=='Rejected by receptionist' || appointment.status=='Rejected by doctor'"><p class="badge bg-danger" >{{appointment.status}}</p> <i class="bi bi-eye ps-2 fs-5 m-0 p-0" ng-click="showReasonToCancel(appointment.reason_for_cancel)"></i></td>
+                    <td ng-show="appointment.status=='Approved by receptionist' || appointment.status=='Approved by doctor'"><p class="badge bg-success" >{{appointment.status}}</p></td>
+                    <td ng-show="appointment.status=='Applied'"><p class="badge bg-primary" >{{appointment.status}}</p></td>
+                    <td>
+                        <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                            ng-click="editAppointmentStatus(appointment.id)"></i>
+                        <!-- <i class="bi bi-trash3 fs-5 text-danger"></i> -->
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
 <!-- </div> -->

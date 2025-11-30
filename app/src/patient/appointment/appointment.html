@@ -1,12 +1,9 @@
 <div class="d-flex h-100">
-    
-    <div class="flex-shrink-0 p-3 bg-dark d-none d-md-block" style="width: 220px;">
+
+    <!-- <div class="flex-shrink-0 p-3 bg-dark d-none d-md-block" style="width: 220px;">
         <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-            <!-- <svg class="bi me-2" width="30" height="24">
-                <use xlink:href="#bootstrap"></use>
-            </svg> -->
             <span class="fs-5 fw-semibold text-white">NanoHealth</span>
-             <i class="bi bi-arrow-left-square-fill"></i>
+            <i class="bi bi-arrow-left-square-fill"></i>
         </a>
         <ul class="list-unstyled ps-0">
             <li class="mb-1">
@@ -65,15 +62,15 @@
                     <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                         <li><a href="#" class="link-dark rounded text-white">New</a></li>
                         <li><a href="#" class="link-dark rounded text-white">
-                            <i class="bi bi-person-circle"></i>
-                            Profile</a></li>
+                                <i class="bi bi-person-circle"></i>
+                                Profile</a></li>
                         <li><a href="#" class="link-dark rounded text-white">Settings</a></li>
                         <li><a href="#" class="link-dark rounded text-white">Sign out</a></li>
                     </ul>
                 </div>
             </li>
         </ul>
-    </div>
+    </div> -->
     <div class="w-auto px-5 h-100 overflow-auto mx-auto">
         <main>
             <div class="py-5 text-center">
@@ -85,6 +82,78 @@
                     completing it.</p> -->
             </div>
             <div class="row g-5">
+                <div class="col-md-7 col-lg-8">
+                    <h4 class="mb-3">Billing address</h4>
+                    <form id="appointmentForm" ng-submit="bookAppointment()">
+                        <div class="row g-3">
+                            <div class="col-sm-6"> <label for="firstName" class="form-label">First name</label> <input
+                                    type="text" class="form-control text-capitalize" id="firstName" placeholder=""
+                                    value={{user.first_name}} disabled>
+
+                            </div>
+                            <div class="col-sm-6"> <label for="lastName" class="form-label">Last name</label> <input
+                                    type="text" class="form-control text-capitalize" id="lastName" placeholder=""
+                                    value="{{user.last_name}}" disabled>
+                            </div>
+                            <div class="col-sm-6"> <label for="email" class="form-label">Email</label> <input
+                                    type="email" class="form-control text-truncate" id="email"
+                                    placeholder="you@example.com" value="{{user.email}}" disabled>
+                            </div>
+                            <div class="col-sm-6"> <label for="phone_no" class="form-label">Phone number</label> <input
+                                    type="text" class="form-control" id="lastName" value="{{'+91 ' + user.phone_no}}"
+                                    disabled>
+                            </div>
+                            <hr class="mt-4">
+                            <div class="col-12">
+                                <label for="doctor" class="form-label">Doctor to visit</label>
+                                <select class="form-select" ng-model="doc" ng-change="docToVisit()" name="doctor"
+                                    required>
+                                    <option value="" disabled selected>Select</option>
+                                    <option ng-repeat="doctor in doctors" value="{{doctor.id}}">
+                                        {{ 'Dr. ' + doctor.first_name + " " + doctor.last_name + " (" +
+                                        doctor.specializations + ")"}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="doctor" class="form-label">Date of visit</label>
+                                <input type="date" ng-model="date" min={{today}} name="date" required class="form-control">
+                            </div>
+
+                            <div class="col-12">
+                                <label class="mb-2">Time of Visit</label>
+                                <select name="time" ng-model="time" class="form-select" aria-label="Default select example">
+                                    <option selected disabled value="">Select</option>
+                                    <option value={{slot.time}} ng-repeat="slot in slots">{{slot.slot}}</option>
+                                    
+                                </select>
+
+                            </div>
+
+                            <div class="col-12">
+                                <label for="doctor" class="form-label">Reason of visit</label>
+                                <input type="text" required name="reason_to_visit" class="form-control"
+                                    placeholder="Eg. Symptoms, etc.">
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <div class="form-check"> <input type="checkbox" ng-model="type" class="form-check-input">
+                            <label class="form-check-label">This is a follow-up appointment.</label>
+                        </div>
+                        <hr class="my-4">
+                        <h4 class="mb-3">Payment</h4>
+                        <div class="my-3">
+                            <div class="form-check"> <input id="credit" name="paymentMethod" type="radio"
+                                    class="form-check-input" checked="" value="UPI" required=""> <label
+                                    class="form-check-label" for="credit">UPI</label> </div>
+                            <div class="form-check"> <input id="debit" value="cash" name="paymentMethod" type="radio"
+                                    class="form-check-input" required=""> <label class="form-check-label"
+                                    for="debit">Cash on visit</label> </div>
+                        </div>
+                        <hr class="my-4"> <button class="w-100 btn btn-primary btn-lg" type="submit">Book
+                            Appointment</button>
+                    </form>
+                </div>
                 <div class="col-md-5 col-lg-4 order-md-last">
                     <h4 class="d-flex justify-content-between align-items-center mb-3"> <span
                             class="text-success fw-medium">
@@ -103,21 +172,22 @@
                                 <h6 class="my-2 text-secondary">With </h6>
                                 <!-- <small class="text-body-secondary">Brief
                                     description</small> -->
-                            </div> <span class="text-truncate ml-2 my-2">{{doctor ? 'Dr. ' + doctor.first_name + " " + doctor.last_name + " (" + doctor.specializations + ")" : 'N/A'}}</span>
+                            </div> <span class="text-truncate ml-2 my-2">{{doctor ? 'Dr. ' + doctor.first_name + " " +
+                                doctor.last_name + " (" + doctor.specializations + ")" : 'N/A'}}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between lh-sm" ng-if="date">
                             <div>
                                 <h6 class="my-2 text-secondary">On</h6>
                                 <!-- <small class="text-body-secondary">Brief
                                     description</small> -->
-                            </div> <span class=" my-2">{{date || 'N/A'}}</span>
+                            </div> <span class=" my-2">{{date | date}}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between lh-sm" ng-if="time">
                             <div>
                                 <h6 class="my-2 text-secondary">@</h6>
                                 <!-- <small class="text-body-secondary">Brief
                                     description</small> -->
-                            </div> <span class="my-2">{{time || 'N/A'}}</span>
+                            </div> <span class="my-2">{{time}}</span>
                         </li>
                         <li class="list-group-item d-flex justify-content-between lh-sm">
                             <div>
@@ -126,119 +196,11 @@
                                     description</small> -->
                             </div> <span class="my-2">{{type ? 'Follow-Up' : 'New'}}</span>
                         </li>
-                        <!-- <li class="list-group-item d-flex justify-content-between bg-body-tertiary">
-                            <div class="text-success">
-                                <h6 class="my-0">Promo code</h6> <small>EXAMPLECODE</small>
-                            </div> <span class="text-success">-$5</span>
-                        </li> -->
-                        <li class="list-group-item d-flex justify-content-between" ng-if="doctor && date && time"> <span>Total</span>
+                        <li class="list-group-item d-flex justify-content-between" ng-if="doctor && date && time">
+                            <span>Total</span>
                             <strong>₹2000</strong>
                         </li>
                     </ul>
-                    <!-- <form class="card p-2">
-                        <div class="input-group"> <input type="text" class="form-control" placeholder="Promo code">
-                            <button type="submit" class="btn btn-secondary">Redeem</button>
-                        </div>
-                    </form> -->
-                </div>
-                <div class="col-md-7 col-lg-8">
-                    <h4 class="mb-3">Billing address</h4>
-                    <form id="appointmentForm" ng-submit="bookAppointment()">
-                        <div class="row g-3">
-                            <div class="col-sm-6"> <label for="firstName" class="form-label">First name</label> <input
-                                    type="text" class="form-control text-capitalize" id="firstName" placeholder=""
-                                    value={{user.first_name}} disabled>
-
-                            </div>
-                            <div class="col-sm-6"> <label for="lastName" class="form-label">Last name</label> <input
-                                    type="text" class="form-control text-capitalize" id="lastName" placeholder=""
-                                    value="{{user.last_name}}" disabled>
-                            </div>
-                            <!-- <div class="col-12"> <label for="username" class="form-label">Username</label>
-                                <div class="input-group has-validation"> <span class="input-group-text">@</span> <input
-                                        type="text" class="form-control" id="username" placeholder="Username"
-                                        required="">
-                                    
-                                </div>
-                            </div> -->
-                            <div class="col-sm-6"> <label for="email" class="form-label">Email</label> <input type="email"
-                                    class="form-control text-truncate" id="email" placeholder="you@example.com" value="{{user.email}}"
-                                    disabled>
-                            </div>
-                            <div class="col-sm-6"> <label for="phone_no" class="form-label">Phone number</label> <input
-                                    type="text" class="form-control" id="lastName"
-                                    value="{{'+91 ' + user.phone_no}}" disabled>
-                            </div>
-                            <!-- <div class="col-12"> <label for="address" class="form-label">Address</label> <input
-                                    type="text" class="form-control" id="address" value={{user.address}}
-                                    disabled="1234 Main St">
-                            </div> -->
-                            <hr class="mt-4">
-                            <div class="col-12">
-                                <label for="doctor" class="form-label">Doctor to visit</label>
-                                <select class="form-select" ng-model="doc" ng-change="docToVisit()" name="doctor" required>
-                                    <option value="" disabled selected>Select</option>
-                                    <option ng-repeat="doctor in doctors" value="{{doctor.id}}">
-                                        {{ 'Dr. ' + doctor.first_name + " " + doctor.last_name + " (" +
-                                        doctor.specializations + ")"}}</option>
-                                </select>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="doctor" class="form-label">Date of visit</label>
-                                <input type="datetime-local" ng-model="datetime" ng-change="timeOfVisit()" min={{today}} name="slot" required class="form-control">
-                            </div>
-
-                            <div class="col-12">
-                                <label for="doctor" class="form-label">Reason of visit</label>
-                                <input type="text" required name="reason_to_visit" class="form-control"
-                                    placeholder="Eg. Symptoms, etc.">
-                            </div>
-                        </div>
-                        <hr class="my-4">
-                        <div class="form-check"> <input type="checkbox" ng-model="type" class="form-check-input">
-                            <label class="form-check-label">This is a follow-up appointment.</label>
-                        </div>
-                        <hr class="my-4">
-                        <h4 class="mb-3">Payment</h4>
-                        <div class="my-3">
-                            <div class="form-check"> <input id="credit" name="paymentMethod" type="radio"
-                                    class="form-check-input" checked="" value="UPI" required=""> <label class="form-check-label"
-                                    for="credit">UPI</label> </div>
-                            <div class="form-check"> <input id="debit" value="cash" name="paymentMethod" type="radio"
-                                    class="form-check-input" required=""> <label class="form-check-label"
-                                    for="debit">Cash on visit</label> </div>
-                        </div>
-                        <!-- <div class="row gy-3">
-                            <div class="col-md-6"> <label for="cc-name" class="form-label">Name on card</label> <input
-                                    type="text" class="form-control" id="cc-name" placeholder="" required=""> <small
-                                    class="text-body-secondary">Full name as displayed on card</small>
-                                <div class="invalid-feedback">
-                                    Name on card is required
-                                </div>
-                            </div>
-                            <div class="col-md-6"> <label for="cc-number" class="form-label">Credit card number</label>
-                                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
-                                <div class="invalid-feedback">
-                                    Credit card number is required
-                                </div>
-                            </div>
-                            <div class="col-md-3"> <label for="cc-expiration" class="form-label">Expiration</label>
-                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
-                                <div class="invalid-feedback">
-                                    Expiration date required
-                                </div>
-                            </div>
-                            <div class="col-md-3"> <label for="cc-cvv" class="form-label">CVV</label> <input type="text"
-                                    class="form-control" id="cc-cvv" placeholder="" required="">
-                                <div class="invalid-feedback">
-                                    Security code required
-                                </div>
-                            </div>
-                        </div> -->
-                        <hr class="my-4"> <button class="w-100 btn btn-primary btn-lg" type="submit">Book
-                            Appointment</button>
-                    </form>
                 </div>
             </div>
         </main>
@@ -251,62 +213,4 @@
             </ul>
         </footer>
     </div>
-    <!-- <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark text-white" style="width: 280px;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-            
-            <span class="fs-4 text-white">NanoHealth</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a ui-sref="home" class="nav-link" aria-current="page">
-                    <i class="bi bi-house-door-fill"></i>
-                    Home
-                </a>
-            </li>
-            <li>
-                <a ui-sref="appointment" class="nav-link active">
-                    <i class="bi bi-calendar-check-fill"></i>
-                    Appointment
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link ">
-                    
-                    Orders
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link ">
-                    
-                    Products
-                </a>
-            </li>
-            <li>
-                <a href="#" class="nav-link ">
-                    
-                    Customers
-                </a>
-            </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-                id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-                <img src="https://github.com/aadijaiin.png" alt="" width="32" height="32" class="rounded-circle me-2">
-                <strong class="text-white">Aadi</strong>
-            </a>
-            <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li>
-                <li><a class="dropdown-item" href="#">Profile</a></li>
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">Sign out</a></li>
-            </ul>
-        </div>
-    </div> -->
-
-
 </div>

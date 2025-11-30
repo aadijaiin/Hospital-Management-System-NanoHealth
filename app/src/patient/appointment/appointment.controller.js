@@ -1,4 +1,4 @@
-hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
+hms.controller('appointmentController', ['$rootScope', '$scope', '$http', '$state', 'baseUrl', function ($rootScope, $scope, $http, $state, baseUrl) {
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -11,8 +11,59 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
         }
     });
 
-    $scope.today = new Date().toLocaleDateString('sv-SE') + 'T' + new Date().toTimeString().slice(0,5);
-    if(!$rootScope.user && !localStorage.getItem('user')){
+    $scope.slots = [
+        {
+            slot: "8:00 - 9:00",
+            time: "08:00"
+        },
+        {
+            slot: "9:00 - 10:00",
+            time: "09:00"
+        },
+        {
+            slot: "10:00 - 11:00",
+            time: "10:00"
+        },
+        {
+            slot: "11:00 - 12:00",
+            time: "11:00"
+        },
+        {
+            slot: "12:00 - 13:00",
+            time: "12:00"
+        },
+        {
+            slot: "13:00 - 14:00",
+            time: "13:00"
+        },
+        {
+            slot: "14:00 - 15:00",
+            time: "14:00"
+        },
+        {
+            slot: "15:00 - 16:00",
+            time: "15:00"
+        },
+        {
+            slot: "16:00 - 17:00",
+            time: "16:00"
+        },
+        {
+            slot: "17:00 - 18:00",
+            time: "17:00"
+        },
+        {
+            slot: "18:00 - 19:00",
+            time: "18:00"
+        },
+        {
+            slot: "19:00 - 20:00",
+            time: "19:00"
+        }
+    ]
+
+    $scope.today = new Date().toLocaleDateString('sv-SE');
+    if (!$rootScope.user && !localStorage.getItem('user')) {
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
             $rootScope.user = res.data;
@@ -22,7 +73,7 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
             console.log(e);
         })
     }
-    else if(!$rootScope.user && localStorage.getItem('user')){
+    else if (!$rootScope.user && localStorage.getItem('user')) {
         $rootScope.user = JSON.parse(localStorage.getItem('user'));
     }
     $scope.getDoctors = function () {
@@ -37,38 +88,24 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
 
     $scope.getDoctors();
     $scope.docToVisit = function () {
-        $scope.doctor = $scope.doctors.filter(function(d){
+        $scope.doctor = $scope.doctors.filter(function (d) {
             return d.id == $scope.doc
         })[0];
     }
-    $scope.timeOfVisit = function () {
-        console.log($scope.datetime.toString().slice(0,15))
-        $scope.date = $scope.datetime.toString().slice(0,15);
-        $scope.time = $scope.datetime.toString().slice(16,21);
-    }
+    // $scope.timeOfVisit = function () {
+    //     console.log($scope.datetime.toString().slice(0, 15))
+    //     $scope.date = $scope.datetime.toString().slice(0, 15);
+    //     $scope.time = $scope.datetime.toString().slice(16, 21);
+    // }
     $scope.bookAppointment = function () {
-        const appointmentForm = new FormData(document.getElementById('appointmentForm'));
-        // $scope.date = appointmentForm.get('slot').split('T')[0];
-        // $scope.time = appointmentForm.get('slot').split('T')[1];
-        appointmentForm.append('date', appointmentForm.get('slot').split('T')[0]);
-        appointmentForm.append('time', appointmentForm.get('slot').split('T')[1]);
-        if(appointmentForm.get('reason_to_visit').trim().length < 2){
+        let appointmentForm = new FormData(document.getElementById('appointmentForm'));
+        if (appointmentForm.get('reason_to_visit').trim().length < 2) {
             Toast.fire({
                 icon: "error",
-                text: "Please enter a valid reason of visit!"
-            })
-            return;
-        } else if (new Date($scope.date).getDate() - new Date().getDate() < 1){
-            Toast.fire({
-                icon: "error",
-                text: "Appointment date must be valid!"
+                text: "Please enter a valid reason to visit!"
             })
             return;
         }
-        console.log(new Date($scope.date).getDate())
-        console.log(new Date().getDate());
-        console.log('diff : ', new Date($scope.date).getDate() - new Date().getDate())
-        console.log(...appointmentForm.entries());
         $http({
             method: 'POST',
             url: `${baseUrl.url}/${baseUrl.patient.bookAppointment}`,
@@ -78,7 +115,7 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
             }
         }).then(function (res) {
             console.log(res);
-            appointmentForm.reset();
+            document.getElementById('appointmentForm').reset();
             Toast.fire({
                 icon: "success",
                 title: res.data.msg
@@ -88,12 +125,4 @@ hms.controller('appointmentController', ['$rootScope','$scope', '$http', '$state
         })
     }
 
-    // $scope.getAppointments = function () {
-    //     $http.get(`${baseUrl.url}/${baseUrl.patient.bookAppointment}`).then(function(res){
-    //         console.log(res);
-    //     }).catch(function(e){
-    //         console.log(e);
-    //     })
-    // }
-    // $scope.getAppointments();
 }]);

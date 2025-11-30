@@ -11,6 +11,10 @@ hms.constant('baseUrl', {
         bookAppointment: 'patient/bookAppointment/',
     },
     receptionist: {
-        data: 'reception/appointments_data/'
+        data: 'reception/appointments_data/',
+        updateStatus : 'reception/update_appointment'
+    }, 
+    doctor: {
+        
     }
 });

@@ -97,14 +97,14 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     }
 
     let appointmentState = {
-        name : 'appointment', 
+        name : 'home.appointment', 
         url: '/book-appointment',
         templateUrl: 'app/src/patient/appointment/appointment.html',
         controller: 'appointmentController'
     }
 
     let appointmentHistoryState = {
-        name : 'appointmentHistory',
+        name : 'home.appointmentHistory',
         url : '/appointment-history',
         templateUrl: 'app/src/patient/appointmentHistory/appointmentHistory.html',
         controller: 'appointmentHistoryController'
@@ -140,15 +140,26 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
 
     let doctorFullViewState = {
         name : 'receptionist.doctor',
-        url : '/doctor/:id',
+        url : '/doctor',
         templateUrl : 'app/src/receptionist/manageDoctors/doctor/doctor.html',
-        controller: 'doctorFullViewController'
+        controller: 'doctorFullViewController',
+        params : {
+            doctor : null,
+            id : null,
+        }
     }
 
     let notFoundState = {
         name: 'otherwise',
         url: '*path',
         templateUrl : 'app/src/404/404.html'
+    }
+
+    let doctorHomeState = {
+        name : 'doctor',
+        url : '/doctor',
+        templateUrl : 'app/src/doctor/home/home.html',
+        controller: 'doctorHomeController'
     }
 
     $stateProvider.state(landingState);
@@ -164,5 +175,6 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     $stateProvider.state(managePatientsState);
     $stateProvider.state(doctorFullViewState);
     $stateProvider.state(notFoundState);
+    $stateProvider.state(doctorHomeState);
 
 })

@@ -103,8 +103,12 @@
             align-items: center;
             z-index: 9999;
         }
-        i, img {
+        i, img, .pointer {
             cursor: pointer;
+        }
+
+        .pointer:hover {
+            background-color: rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -138,6 +142,7 @@
     <script src="app/src/receptionist/manageDoctors/manageDoctors.controller.js"></script>
     <script src="app/src/receptionist/managePatients/managePatients.controller.js"></script>
     <script src="app/src/receptionist/manageDoctors/doctor/doctor.controller.js"></script>
+    <script src="app/src/doctor/home/home.controller.js"></script>
 </body>
 
 </html>

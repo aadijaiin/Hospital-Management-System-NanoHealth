@@ -1,30 +1,43 @@
-<!-- <div class="d-flex h-100"> -->
+<main role="main" class="container-fluid p-3 overflow-auto">
+    <h3>Dr. {{doctor.first_name + " " + doctor.last_name}}</h3>
+    <hr>
+    <div class="row row-cols-lg-2 row-cols-1">
+        <div class="col"><img src={{pfpBaseUrl}}/auth/{{doctor.doctor_photo}} width="50%" alt=""></div>
+        <div class="col">
+            <div class="row">
 
-    <main role="main" class="container-fluid p-3 overflow-auto">
-        <!-- <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
-            class="chartjs-size-monitor">
-            <div class="chartjs-size-monitor-expand"
-                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-            </div>
-            <div class="chartjs-size-monitor-shrink"
-                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+                <p class="fs-3 col"><span class="fw-medium">Name: </span>Dr. {{doctor.first_name + " " +
+                    doctor.last_name}}</p>
+                <p class="fs-3 col"><span class="fw-medium">Specialization: </span>{{doctor.specialization_name}}</p>
             </div>
         </div>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">{{doctor.first_name}}</h1>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
-            </form>
-        </div> -->
-
-        <h1>Doctor</h1>
-
-        <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
-            style="display: block; width: 1152px; height: 486px;"></canvas> -->
-
-        <!-- <h2>Appointments</h2> -->
-        
-    </main>
-<!-- </div> -->
+    </div>
+    <hr>
+    <h3>Patients</h3>
+    <hr>
+    <div class="table-responsive" ng-if="doctor.patients.length > 0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Height/Weight</th>
+                    <th>Blood Group</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="patient in doctor.patients">
+                    <td class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{patient.patient_photo}} width="44" height="44"
+                            class="rounded-circle pe-2 object-fit-cover" alt="">
+                        <div class="d-flex flex-column justify-content-center">
+                            <p class="p-0 m-0">{{patient.first_name + " " +
+                                patient.last_name}}</p>
+                            <p class="fs-6 text-muted p-0 m-0">{{patient.age}}, {{patient.gender}}</p>
+                        </div>
+                    </td>
+                    <td>{{patient.height}}cm / {{patient.weight}}kg</td>
+                    <td>{{patient.blood_group_name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>

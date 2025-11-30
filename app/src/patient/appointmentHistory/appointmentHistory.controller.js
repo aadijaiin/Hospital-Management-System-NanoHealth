@@ -35,6 +35,13 @@ hms.controller('appointmentHistoryController', ['$rootScope', '$scope', '$http',
             console.log(e);
         })
     }
+    $scope.showReasonToCancel = function (reason) {
+        Swal.fire({
+            title: 'Reason for cancellation',
+            text: reason,
+            icon: "question"
+        });
+    }
     $scope.pastAppointments = [];
     $scope.upComingAppointments = [];
     $scope.todaysAppointments = [];

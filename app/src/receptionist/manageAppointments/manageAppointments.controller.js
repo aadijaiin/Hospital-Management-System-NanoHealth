@@ -1,6 +1,7 @@
 
-hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
-    if(!$rootScope.user && !localStorage.getItem('user')){
+
+hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http', '$state', 'baseUrl', function ($rootScope, $scope, $http, $state, baseUrl) {
+    if (!$rootScope.user && !localStorage.getItem('user')) {
         //get user function
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
@@ -11,9 +12,21 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
             console.log(e);
         })
     }
-    else if(!$rootScope.user && localStorage.getItem('user')){
+    else if (!$rootScope.user && localStorage.getItem('user')) {
         $scope.user = JSON.parse(localStorage.getItem('user'));
     }
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
 
     $scope.pfpBaseUrl = baseUrl.url;
 
@@ -32,12 +45,12 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
             $scope.doctors = res.data.doctor_data;
             $scope.patients = res.data.patient_data;
 
-            for(let appointment of $scope.appointments) {
-                let doctor = $scope.doctors.filter(function(doctor) {
+            for (let appointment of $scope.appointments) {
+                let doctor = $scope.doctors.filter(function (doctor) {
                     return doctor.id === appointment.doctor_id;
                 })[0]
 
-                let patient = $scope.patients .filter(function(patient) {
+                let patient = $scope.patients.filter(function (patient) {
                     return patient.id === appointment.patient_id;
                 })[0]
 
@@ -47,14 +60,20 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
                 appointment['patient'] = patient;
             }
 
-            for(let doctor of $scope.doctors) {
+            for (let doctor of $scope.doctors) {
                 let temp = $scope.appointments.filter(function (appointment) {
                     return appointment.doctor_id === doctor.id;
                 });
-                doctor['patients']=[];
-                for(let t of temp) {
-                    doctor['patients'].push(t.patient);
+                doctor['patients'] = [];
+                let ids = [];
+                for (let t of temp) {
+                    if (!ids.includes(t.patient.id)) {
+                        doctor['patients'].push(t.patient);
+                        ids.push(t.patient.id);
+                    }
+
                 }
+                console.log('ids ', ids);
             }
 
             console.log($scope.doctors)
@@ -65,9 +84,45 @@ hms.controller('manageAppointmentsController', ['$rootScope','$scope', '$http', 
 
     $scope.getData();
 
-
+    $scope.showReasonToCancel = function (reason) {
+        Swal.fire({
+            title: 'Reason for cancellation',
+            text: reason,
+            icon: "question"
+        });
+    }
     $scope.editAppointmentStatus = function (id) {
         console.log(id, typeof id);
+        $scope.idToEdit = id;
+    }
+
+    $scope.updateAppoinmentStatus = function () {
+        let form = new FormData(document.getElementById('updateAppoinmentStatusForm'));
+        if (form.get('accepted') == 'False' && form.get('reason_for_cancel').trim().length <= 2) {
+            Toast.fire({
+                icon: 'error',
+                text: 'Please provide a valid reason for rejection.'
+            })
+            return;
+        }
+
+        $http({
+            method: 'POST',
+            url: `${baseUrl.url}/${baseUrl.receptionist.updateStatus}?id=${$scope.idToEdit}`,
+            data: form,
+            headers: { 'Content-Type': undefined },
+        }).then(function (res) {
+            console.log(res);
+            Toast.fire({
+                icon: 'success',
+                text: res.data.msg
+            })
+            document.getElementById('updateAppoinmentStatusForm').reset();
+            $scope.getData();
+        }).catch(function (e) {
+            console.log(e);
+        })
+
     }
 
 }]);

@@ -33,12 +33,11 @@
                         <th>Specialization</th>
                         <th>Qualification</th>
                         <th>Experience</th>
-                        <!-- <th>Action</th> -->
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="doctor in doctors | filter:query:strict">
-                        <td class="d-flex" ui-sref="doctor({id:doctor.id})"> <img
+                        <td class="d-flex" ui-sref="receptionist.doctor({doctor : doctor, id: doctor.id})"> <img
                                 src={{pfpBaseUrl}}/auth/{{doctor.doctor_photo}} width="44" height="44"
                                 class="rounded-circle pe-2 object-fit-cover" alt="">
                             <div class="d-flex flex-column justify-content-center">
@@ -51,6 +50,7 @@
                         <td>{{doctor.specialization_name}}</td>
                         <td>{{doctor.qualification}}</td>
                         <td>{{doctor.experience}}</td>
+                        
                         <!-- <td>
                             <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal" ng-click="editAppointmentStatus(appointment.id)"></i>

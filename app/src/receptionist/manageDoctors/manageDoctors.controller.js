@@ -46,17 +46,23 @@ hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$sta
                 appointment['patient'] = patient;
             }
 
-            for(let doctor of $scope.doctors) {
-                doctor.age = new Date().getFullYear() - new Date(doctor.D_O_B).getFullYear();
+            for (let doctor of $scope.doctors) {
                 let temp = $scope.appointments.filter(function (appointment) {
                     return appointment.doctor_id === doctor.id;
                 });
-                doctor['patients']=[];
-                for(let t of temp) {
-                    doctor['patients'].push(t.patient);
-                }
-            }
+                doctor.age = new Date().getFullYear() - new Date(doctor.D_O_B).getFullYear();
+                doctor['patients'] = [];
+                let ids = [];
+                for (let t of temp) {
+                    if (!ids.includes(t.patient.id)) {
+                        doctor['patients'].push(t.patient);
+                        ids.push(t.patient.id);
+                    }
 
+                }
+                console.log('ids ', ids);
+            
+            }
             for(let patient of $scope.patients) {
                 patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
             }

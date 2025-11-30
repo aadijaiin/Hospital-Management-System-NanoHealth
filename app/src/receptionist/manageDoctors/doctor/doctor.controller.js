@@ -1,29 +1,29 @@
 
 hms.controller('doctorFullViewController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
-    // if(!$rootScope.user && !localStorage.getItem('user')){
-    //     //get user function
-    //     $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
-    //         console.log(res);
-    //         $rootScope.user = res.data;
-    //         localStorage.setItem('user', JSON.stringify(res.data));
+    if(!$rootScope.user && !localStorage.getItem('user')){
+        //get user function
+        $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
+            console.log(res);
+            $rootScope.user = res.data;
+            localStorage.setItem('user', JSON.stringify(res.data));
 
-    //     }).catch(function (e) {
-    //         console.log(e);
-    //     })
-    // }
-    // else if(!$rootScope.user && localStorage.getItem('user')){
-    //     $scope.user = JSON.parse(localStorage.getItem('user'));
-    // }
+        }).catch(function (e) {
+            console.log(e);
+        })
+    }
+    else if(!$rootScope.user && localStorage.getItem('user')){
+        $scope.user = JSON.parse(localStorage.getItem('user'));
+    }
 
-    // $scope.pfpBaseUrl = baseUrl.url;
+    $scope.pfpBaseUrl = baseUrl.url;
 
-    // $scope.bigSideBar = true;
-    // $scope.showBigSideBar = function () {
-    //     $scope.bigSideBar = true;
-    // }
-    // $scope.hideBigSideBar = function () {
-    //     $scope.bigSideBar = false;
-    // }
+    $scope.bigSideBar = true;
+    $scope.showBigSideBar = function () {
+        $scope.bigSideBar = true;
+    }
+    $scope.hideBigSideBar = function () {
+        $scope.bigSideBar = false;
+    }
 
     // $scope.getData = function () {
     //     $http.get(`${baseUrl.url}/${baseUrl.receptionist.data}`).then(function (res) {
@@ -73,6 +73,14 @@ hms.controller('doctorFullViewController', ['$rootScope','$scope', '$http', '$st
     // // $scope.editAppointmentStatus = function (id) {
     // //     console.log(id, typeof id);
     // // }
+    console.log($state.params)
+    if(!$state.params.id || !$state.params.doctor){
+        $state.go('receptionist.manageDoctors');
+    }
+
+    $scope.id = $state.params.id
+    $scope.doctor = $state.params.doctor
+    // console.log($state.params)
 
 
 
