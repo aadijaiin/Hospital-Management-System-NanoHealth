@@ -1,5 +1,6 @@
 
-hms.controller('receptionistHomeController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
+
+hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
     if(!$rootScope.user && !localStorage.getItem('user')){
         //get user function
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
@@ -25,16 +26,6 @@ hms.controller('receptionistHomeController', ['$rootScope','$scope', '$http', '$
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-
-    $scope.pfpBaseUrl = baseUrl.url;
-
-    $scope.bigSideBar = true;
-    $scope.showBigSideBar = function () {
-        $scope.bigSideBar = true;
-    }
-    $scope.hideBigSideBar = function () {
-        $scope.bigSideBar = false;
-    }
 
     $scope.logout = function () {
         $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function(res) {

@@ -1,4 +1,5 @@
 
+
 myInterceptor.$inject = ['$q', 'loaderService'];
 function myInterceptor ($q, loaderService) {
     const Toast = Swal.mixin({
@@ -92,7 +93,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     let homeState = {
         name : 'home', 
         url: '/home',
-        templateUrl: 'app/src/patient/home.html',
+        templateUrl: 'app/src/patient/home/home.html',
         controller: 'homeController'
     }
 
@@ -152,7 +153,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     let notFoundState = {
         name: 'otherwise',
         url: '*path',
-        templateUrl : 'app/src/404/404.html'
+        templateUrl : 'app/src/common/404/404.html'
     }
 
     let doctorHomeState = {
@@ -160,6 +161,24 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
         url : '/doctor',
         templateUrl : 'app/src/doctor/home/home.html',
         controller: 'doctorHomeController'
+    }
+
+    let profileState = {
+        name : 'profile',
+        url : '/profile',
+        templateUrl : 'app/src/common/profile/profile.html',
+        controller : 'profileController'
+    }
+
+    let patientFullViewState = {
+        name: 'receptionist.patient',
+        url: '/patient',
+        templateUrl: 'app/src/receptionist/managePatients/patient/patient.html',
+        controller: 'patientFullViewController',
+        params : {
+            patient : null,
+            id : null,
+        }
     }
 
     $stateProvider.state(landingState);
@@ -176,5 +195,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     $stateProvider.state(doctorFullViewState);
     $stateProvider.state(notFoundState);
     $stateProvider.state(doctorHomeState);
+    $stateProvider.state(profileState);
+    $stateProvider.state(patientFullViewState);
 
 })

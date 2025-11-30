@@ -25,6 +25,17 @@ hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', 'b
             console.log(e);
         })
     }
+
+    if(localStorage.getItem('user') || $rootScope.user){
+        const user = JSON.parse(localStorage.getItem('user'));
+        if(user.role == 'Patient'){
+            $state.go('home');
+        } else if (user.role == 'Doctor'){
+            $state.go('doctor');
+        } else if (user.role ='Receptionist'){
+            $state.go('receptionist');
+        }
+    }
     $scope.login = function () {
         console.log('login called')
         $scope.user = {

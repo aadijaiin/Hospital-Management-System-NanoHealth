@@ -1,33 +1,31 @@
-
-    <main role="main" class="container-fluid p-3 overflow-auto">
-        <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
-            class="chartjs-size-monitor">
-            <div class="chartjs-size-monitor-expand"
-                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
-            </div>
-            <div class="chartjs-size-monitor-shrink"
-                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
-                <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
-            </div>
+<main role="main" class="container-fluid p-3 overflow-auto">
+    <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
+        class="chartjs-size-monitor">
+        <div class="chartjs-size-monitor-expand"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
         </div>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Doctors</h1>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
-                <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
-            </form>
+        <div class="chartjs-size-monitor-shrink"
+            style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+            <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
         </div>
+    </div>
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+        <h1 class="h2">Doctors</h1>
+        <form class="d-flex" role="search">
+            <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
+            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+        </form>
+    </div>
 
-        <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
+    <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
             style="display: block; width: 1152px; height: 486px;"></canvas> -->
 
-        <!-- <h2>Appointments</h2> -->
-        <div class="table-responsive">
+    <!-- <h2>Doctors</h2> -->
+    <!-- <div class="table-responsive">
             <table class="table table-hover">
                 <thead>
                     <tr>
-                        <!-- <th>#</th> -->
                         <th>Name</th>
                         <th>No. of patients</th>
                         <th>Specialization</th>
@@ -50,14 +48,28 @@
                         <td>{{doctor.specialization_name}}</td>
                         <td>{{doctor.qualification}}</td>
                         <td>{{doctor.experience}}</td>
-                        
-                        <!-- <td>
-                            <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal" ng-click="editAppointmentStatus(appointment.id)"></i>
-
-                        </td> -->
                     </tr>
                 </tbody>
             </table>
+        </div> -->
+
+    <div class="row gap-4">
+        <div class="card" style="width: 18rem;" ui-sref="receptionist.doctor({doctor : doctor, id: doctor.id})" ng-repeat="doctor in doctors">
+            <img src={{pfpBaseUrl}}/auth/{{doctor.doctor_photo}} class="card-img-top mt-2 rounded-top-3 object-fit-cover" height="220px"
+                alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Dr. {{doctor.first_name + " " + doctor.last_name}}</h5>
+                <span class="card-text">{{doctor.specialization_name}} ({{doctor.qualification}})</span>
+            </div>
         </div>
-    </main>
+    </div>
+</main>
+
+<style>
+    .card:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition-duration: 0.3s;
+        z-index: 999;
+        transition-property: all;
+    }
+</style>

@@ -1,6 +1,6 @@
 
 
-hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
+hms.controller('profileController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
     if(!$rootScope.user && !localStorage.getItem('user')){
         //get user function
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
@@ -14,6 +14,10 @@ hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'bas
     }
     else if(!$rootScope.user && localStorage.getItem('user')){
         $scope.user = JSON.parse(localStorage.getItem('user'));
+    }
+
+    $scope.logout = function () {
+        console.log('logout called...')
     }
 
 }]);

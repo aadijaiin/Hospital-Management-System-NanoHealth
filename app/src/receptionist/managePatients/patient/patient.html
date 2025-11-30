@@ -1,0 +1,110 @@
+<main role="main" class="container-fluid p-3 overflow-auto">
+    <h3>Patient Details</h3>
+    <hr>
+
+    <div class="container-fluid row">
+        <div class="col-auto d-flex flex-column flex-lg-row">
+            <img src="{{pfpBaseUrl}}/auth/{{patient.patient_photo}}" height="300" width="300"
+                class="rounded-circle object-fit-cover border" alt="">
+
+            <div class="p-4">
+                <p class="fs-3 fw-medium">{{patient.gender=='Male' ? 'Mr.' : 'Ms.'}} {{patient.first_name}}
+                    {{patient.last_name}}</p>
+                <p class="fs-5 text-muted fw-medium">{{patient.email || 'abc@xyz.pqr'}}</p>
+                
+                <button class="btn btn-outline-danger mt-4 py-2 px-4 rounded-pill">Edit profile</button>
+            </div>
+        </div>
+        <div class="col border-start ms-4">
+            <div class="row p-4">
+                <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">gender</p>
+                    <p class="fs-5 fw-medium ">{{patient.gender}}<p>
+                </div>
+                <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">Age</p>
+                    <p class="fs-5 fw-medium">{{patient.age}}<p>
+                </div>
+                <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">Blood</p>
+                    <p class="fs-5 fw-medium ">{{patient.blood_group_name}}<p>
+                </div>
+                <div class="w-100"></div>
+                <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">Status</p>
+                    <p class="fs-5 fw-medium d-flex align-items-center gap-2"><span class="d-inline-block bg-success rounded-circle p-1"></span>Active </span><p>
+                </div>
+                <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">Appointments</p>
+                    <p class="fs-5 fw-medium ">{{patient.no_of_appointments}}<p>
+                </div>
+                <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">Registered</p>
+                    <p class="fs-5 fw-medium ">{{patient.created_at.slice(0,10) | date}}<p>
+                </div>
+                <div class="w-100"></div>
+                <!-- <div class="col p-2 h-100">
+                    <p class="fs-6 fw-medium text-muted">Appointments</p>
+                    <p class="fs-5 fw-medium ">{{patient.no_of_appointments}}<p>
+                </div> -->
+                <!-- <div class="col h-100">col</div> -->
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class="mt-4">Patient History</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div class="row row-cols-lg-2 row-cols-1">
+        <div class="col"><img src={{pfpBaseUrl}}/auth/{{patient.patient_photo}} width="50%" alt=""></div>
+        <div class="col">
+        </div>
+    </div> -->
+    <!-- <hr/> -->
+    <!-- <h3>Patients</h3>
+    <hr>
+    <div class="table-responsive" ng-if="doctor.patients.length > 0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Patient</th>
+                    <th>Height/Weight</th>
+                    <th>Blood Group</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="patient in doctor.patients">
+                    <td class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{patient.patient_photo}} width="44" height="44"
+                            class="rounded-circle pe-2 object-fit-cover" alt="">
+                        <div class="d-flex flex-column justify-content-center">
+                            <p class="p-0 m-0">{{patient.first_name + " " +
+                                patient.last_name}}</p>
+                            <p class="fs-6 text-muted p-0 m-0">{{patient.age}}, {{patient.gender}}</p>
+                        </div>
+                    </td>
+                    <td>{{patient.height}}cm / {{patient.weight}}kg</td>
+                    <td>{{patient.blood_group_name}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+</main>

@@ -38,7 +38,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="patient in patients | filter:query:strict">
+                    <tr ng-repeat="patient in patients | filter:query:strict" ui-sref="receptionist.patient({id: patient.id, patient: patient})">
                         <td class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{patient.patient_photo}} width="44"
                                 height="44" class="rounded-circle pe-2 object-fit-cover" alt="">
                             <div class="d-flex flex-column justify-content-center">

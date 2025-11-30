@@ -16,4 +16,14 @@ hms.controller('doctorHomeController', ['$rootScope','$scope', '$http', '$state'
         $scope.user = JSON.parse(localStorage.getItem('user'));
     }
 
+    $scope.getDashboard = function() {
+        $http.get(`${baseUrl.url}/${baseUrl.doctor.dashboard}`).then(function(res) {
+            console.log(res);
+        }).catch(function(e){
+            console.log(e)
+        })
+    }
+
+    $scope.getDashboard();
+
 }]);

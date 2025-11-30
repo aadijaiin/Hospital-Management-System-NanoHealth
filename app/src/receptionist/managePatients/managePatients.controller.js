@@ -58,6 +58,23 @@ hms.controller('managePatientsController', ['$rootScope','$scope', '$http', '$st
                 }
             }
 
+            // for (let patient of $scope.patients) {
+            //     let temp = $scope.appointments.filter(function (appointment) {
+            //         return appointment.patient_id === patient.id;
+            //     });
+            //     patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
+            //     // patient['appointments'] = [];
+            //     // let ids = [];
+            //     // for (let t of temp) {
+
+            //     //     patient.appointments.push(t)
+
+            //     // }
+            //     patient.appointments = temp;
+            //     patient.no_of_appointments = patient.appointments.length;
+            
+            // }
+
             for(let patient of $scope.patients) {
                 patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
                 let no_of_appointments = 0;
