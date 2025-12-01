@@ -97,8 +97,8 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
     }
 
     $scope.updateAppoinmentStatus = function () {
-        let form = new FormData(document.getElementById('updateAppoinmentStatusForm'));
-        if (form.get('accepted') == 'False' && form.get('reason_for_cancel').trim().length <= 2) {
+        // let form = new FormData(document.getElementById('updateAppoinmentStatusForm'));
+        if ($scope.accepted == 'False' && $scope.reason_for_cancel.trim().length <= 2) {
             Toast.fire({
                 icon: 'error',
                 text: 'Please provide a valid reason for rejection.'
@@ -106,10 +106,14 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             return;
         }
 
+
         $http({
-            method: 'POST',
+            method: 'PUT',
             url: `${baseUrl.url}/${baseUrl.receptionist.updateStatus}?id=${$scope.idToEdit}`,
-            data: form,
+            data: {
+                accepted: $scope.accepted == '0' ? true:false,
+                reason_for_cancel : $scope.reason_for_cancel
+            },
             headers: { 'Content-Type': undefined },
         }).then(function (res) {
             console.log(res);

@@ -10,18 +10,18 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav gap-lg-5 ms-auto">
                     <li class="nav-item h5">
-                        <a class="nav-link active" aria-current="page" href="#"> Home</a>
+                        <a class="nav-link" aria-current="page" ui-sref="landing"><i class="bi bi-house-door-fill"></i> Home </a>
                     </li>
-                    <li class="nav-item h5">
-                        <a class="nav-link " href="#">Features</a>
+                    <li class="nav-item h5" ng-hide="user">
+                        <a class="nav-link " aria-current="page" ui-sref="login" ><i class="bi bi-door-open-fill"></i>Login</a>
                     </li>
-                    <li class="nav-item h5">
-                        <a class="nav-link" href="#">Pricing</a>
+                    <li class="nav-item h5" ng-show="user">
+                        <a class="nav-link " aria-current="page" ng-click="logout()" ><i class="bi bi-door-closed-fill"></i> Logout</a>
                     </li>
                     <li class="nav-item dropdown h5">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">
-                            Register As
+                           Register As
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" ui-sref="patientRegistration">Patient</a></li>
@@ -36,15 +36,15 @@
     <div class="h-lg-50 px-2 px-lg-5">
         <div class="row row-cols-1 row-cols-lg-2 h-100">
             <div class="col h-100 p-3 p-lg-5 d-flex flex-column justify-content-between">
-                <p class="display-4 ">
-                    A Modern Hospital with a <span style="color: #75136b;"> <br> Gentle Touch</span>
+                <p class="display-4">
+                    A Modern Hospital with a <span class="text-purple-600"> <br> Gentle Touch</span>
                 </p>
                 <p class="fs-3 fw-medium mt-4">From digital X-rays to pain free treatments. We bring together
                     experience,
                     innovation and compassion. <span class="text-muted fw-normal">We are dedicated to creating a calm
                         space where every patient feels informed, comfortable, and cared for!</span></p>
                 <button class="w-50 align-self-center py-2 rounded-pill fw-medium fs-5 text-white d-none d-lg-block"
-                    style="background-color: #75136b;" ui-sref="login">
+                    style="background-color: #75136b;" ui-sref="home.appointment">
                     Book an Appointment now
                 </button>
                 <div class="row row-cols-3 mt-4">

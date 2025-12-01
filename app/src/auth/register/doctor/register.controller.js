@@ -94,7 +94,7 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', 'baseUr
                 if (res.status == 201) {
                     Toast.fire({
                         icon: "success",
-                        title: " User registered successfully!"
+                        title: "User registered successfully!"
                     });
                     $state.go('login');
                 }
@@ -110,11 +110,10 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', 'baseUr
                     headers: { 'Content-Type': 'application/json' },
                 }).then(function (res) {
                     console.log(res);
-                    $state.go('home');
+                    $state.go('doctor');
                 }).catch(function (e) {
                     console.log(e);
                 })
-
 
             }).catch(function (e) {
 

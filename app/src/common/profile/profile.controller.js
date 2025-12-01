@@ -17,7 +17,22 @@ hms.controller('profileController', ['$rootScope','$scope', '$http', '$state', '
     }
 
     $scope.logout = function () {
-        console.log('logout called...')
+        $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function(res) {
+            Toast.fire({
+                icon: 'success',
+                text: res.data.msg
+            });
+            if($rootScope.user) {
+                $rootScope.user = null;
+            } 
+            if(localStorage.getItem('user')){
+                localStorage.removeItem('user');
+            }
+            $state.go('landing')
+
+        }).catch(function(e){
+            console.log(e);
+        })
     }
 
 }]);

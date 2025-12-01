@@ -216,9 +216,9 @@
                         class="badge text-bg-success float-end">{{appointment.status}}</span>
                     <span ng-click="showReasonToCancel(appointment.reason_for_cancel)"
                         ng-show="appointment.status == 'Rejected by receptionist' || appointment.status == 'Rejected by doctor'"
-                        class="badge text-bg-danger float-end">{{appointment.status}} <i class="bi bi-eye ps-2 m-0 p-0"
-                            ></i></span>
-                    <span ng-show="appointment.status == 'Applied'"
+                        class="badge text-bg-danger float-end">{{appointment.status}} <i
+                            class="bi bi-eye ps-2 m-0 p-0"></i></span>
+                    <span ng-show="appointment.status == 'Pending'"
                         class="badge text-bg-primary float-end">{{appointment.status}}</span>
 
                 </div>
@@ -248,12 +248,11 @@
 
                     <span ng-click="showReasonToCancel(appointment.reason_for_cancel)"
                         ng-show="appointment.status == 'Rejected by receptionist' || appointment.status == 'Rejected by doctor'"
-                        class="badge text-bg-danger float-end">{{appointment.status}} <i class="bi bi-eye ps-2 m-0 p-0"
-                            ></i></span>
+                        class="badge text-bg-danger float-end">{{appointment.status}} <i
+                            class="bi bi-eye ps-2 m-0 p-0"></i></span>
 
 
-                    <span 
-                        ng-show="appointment.status == 'Applied'"
+                    <span ng-show="appointment.status == 'Pending'"
                         class="badge text-bg-primary float-end">{{appointment.status}}</span>
 
                 </div>
@@ -304,25 +303,12 @@
                     <span
                         ng-show="appointment.status == 'Approved by receptionist' || appointment.status == 'Approved by doctor'"
                         class="badge text-bg-success float-end">{{appointment.status}}</span>
-                   <span ng-click="showReasonToCancel(appointment.reason_for_cancel)"
+                    <span ng-click="showReasonToCancel(appointment.reason_for_cancel)"
                         ng-show="appointment.status == 'Rejected by receptionist' || appointment.status == 'Rejected by doctor'"
-                        class="badge text-bg-danger float-end">{{appointment.status}} <i class="bi bi-eye ps-2 m-0 p-0"
-                            ></i></span>
-                    <span ng-show="appointment.status == 'Applied'"
+                        class="badge text-bg-danger float-end">{{appointment.status}} <i
+                            class="bi bi-eye ps-2 m-0 p-0"></i></span>
+                    <span ng-show="appointment.status == 'Pending'"
                         class="badge text-bg-primary float-end">{{appointment.status}}</span>
-                    <!-- <td
-                        ng-show="appointment.status=='Rejected by receptionist' || appointment.status=='Rejected by doctor'">
-                        <p class="badge bg-danger">{{appointment.status}}</p> <i class="bi bi-eye ps-2 fs-5 m-0 p-0"
-                            ng-click="showReasonToVisit(appointment.reason_for_cancel)"></i>
-                    </td>
-                    <td
-                        ng-show="appointment.status=='Approved by receptionist' || appointment.status=='Approved by doctor'">
-                        <p class="badge bg-success">{{appointment.status}}</p>
-                    </td>
-                    <td ng-show="appointment.status=='Applied'">
-                        <p class="badge bg-primary">{{appointment.status}}</p>
-                    </td> -->
-
                 </div>
                 <div class="card-body">
                     <div class="d-flex float-start gap-2">

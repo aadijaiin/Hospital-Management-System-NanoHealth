@@ -1,5 +1,3 @@
-
-
 myInterceptor.$inject = ['$q', 'loaderService'];
 function myInterceptor ($q, loaderService) {
     const Toast = Swal.mixin({
@@ -66,20 +64,21 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     let landingState = {
         name: 'landing',
         url: '/',
-        templateUrl: 'app/src/landing/landing.html'
+        templateUrl: 'app/src/landing/landing.html',
+        controller : "landingController"
     }
 
     let patientRegistrationState = {
         name: 'patientRegistration',
         url: '/register-patient',
-        templateUrl: 'app/src/auth/patient/register.html',
+        templateUrl: 'app/src/auth/register/patient/register.html',
         controller: 'patientRegisterController'
     }
 
     let doctorRegistrationState = {
         name: 'doctorRegistration',
         url: '/register-doctor',
-        templateUrl: 'app/src/auth/doctor/register.html',
+        templateUrl: 'app/src/auth/register/doctor/register.html',
         controller: 'doctorRegisterController'
     }
 
@@ -140,7 +139,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     }
 
     let doctorFullViewState = {
-        name : 'receptionist.doctor',
+        name : 'receptionist.manageDoctors.doctor',
         url : '/doctor',
         templateUrl : 'app/src/receptionist/manageDoctors/doctor/doctor.html',
         controller: 'doctorFullViewController',
@@ -171,7 +170,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     }
 
     let patientFullViewState = {
-        name: 'receptionist.patient',
+        name: 'receptionist.managePatients.patient',
         url: '/patient',
         templateUrl: 'app/src/receptionist/managePatients/patient/patient.html',
         controller: 'patientFullViewController',
@@ -179,6 +178,13 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
             patient : null,
             id : null,
         }
+    }
+
+    let reportState = {
+        name: 'report',
+        url : '/report',
+        templateUrl:'app/src/common/report/report.html',
+        controller: 'reportController'
     }
 
     $stateProvider.state(landingState);
@@ -197,5 +203,6 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     $stateProvider.state(doctorHomeState);
     $stateProvider.state(profileState);
     $stateProvider.state(patientFullViewState);
+    $stateProvider.state(reportState);
 
 })

@@ -1,12 +1,10 @@
 
 hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
     if(!$rootScope.user && !localStorage.getItem('user')){
-        //get user function
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
             $rootScope.user = res.data;
             localStorage.setItem('user', JSON.stringify(res.data));
-
         }).catch(function (e) {
             console.log(e);
         })
@@ -74,11 +72,6 @@ hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$sta
     }
 
     $scope.getData();
-
-
-    // $scope.editAppointmentStatus = function (id) {
-    //     console.log(id, typeof id);
-    // }
 
 
 

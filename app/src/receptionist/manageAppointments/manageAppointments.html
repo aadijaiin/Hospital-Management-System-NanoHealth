@@ -8,13 +8,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div >
-                    <select ng-model="rejected" required name="accepted" class="form-select" aria-label="Default select example">
+                <div>
+                    <input type="radio" ng-model="accepted" value='0' class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
+                    <label class="btn btn-outline-success" for="option5">Approve</label>
+
+                    <input type="radio" ng-model="accepted" value='1' class="btn-check" name="options-base" id="option6" autocomplete="off">
+                    <label class="btn btn-outline-danger" for="option6">Reject</label>
+                    <!-- <select ng-model="accepted" required name="accepted" class="form-select" aria-label="Default select example">
                         <option selected disabled value="">Status</option>
                         <option value="True">Accept</option>
                         <option  value="False">Reject</option>
-                    </select>
-                    <div class="mb-3"  ng-show="rejected == 'False'">
+                    </select> -->
+                    <div class="mb-3" ng-model="reason_for_cancel" ng-show="accepted == '1'">
                         <label for="message-text" class="col-form-label">Message:</label>
                         <textarea name="reason_for_cancel" class="form-control" id="message-text"></textarea>
                     </div>
@@ -88,9 +93,18 @@
                             class="rounded-circle pe-2 object-fit-cover" alt="">Dr. {{appointment.doctor.first_name
                         + " " + appointment.doctor.last_name}}</td>
                     <td>{{appointment.appointment_time.slice(0,5)}}</td>
-                    <td ng-show="appointment.status=='Rejected by receptionist' || appointment.status=='Rejected by doctor'"><p class="badge bg-danger" >{{appointment.status}}</p> <i class="bi bi-eye ps-2 fs-5 m-0 p-0" ng-click="showReasonToCancel(appointment.reason_for_cancel)"></i></td>
-                    <td ng-show="appointment.status=='Approved by receptionist' || appointment.status=='Approved by doctor'"><p class="badge bg-success" >{{appointment.status}}</p></td>
-                    <td ng-show="appointment.status=='Applied'"><p class="badge bg-primary" >{{appointment.status}}</p></td>
+                    <td
+                        ng-show="appointment.status=='Rejected by receptionist' || appointment.status=='Rejected by doctor'">
+                        <p class="badge bg-danger">{{appointment.status}}</p> <i class="bi bi-eye ps-2 fs-5 m-0 p-0"
+                            ng-click="showReasonToCancel(appointment.reason_for_cancel)"></i>
+                    </td>
+                    <td
+                        ng-show="appointment.status=='Approved by receptionist' || appointment.status=='Approved by doctor'">
+                        <p class="badge bg-success">{{appointment.status}}</p>
+                    </td>
+                    <td ng-show="appointment.status=='Pending'">
+                        <p class="badge bg-primary">{{appointment.status}}</p>
+                    </td>
                     <td>
                         <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             ng-click="editAppointmentStatus(appointment.id)"></i>

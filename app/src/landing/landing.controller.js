@@ -1,27 +1,7 @@
-
-
-hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
-    if(!$rootScope.user && !localStorage.getItem('user')){
-        //get user function
-        $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
-            console.log(res);
-            $rootScope.user = res.data;
-            localStorage.setItem('user', JSON.stringify(res.data));
-
-        }).catch(function (e) {
-            console.log(e);
-            Toast.fire({
-                icon : 'error',
-                text : e.data.error
-            })
-            $state.go('login')
-        })
-    }
-    else if(!$rootScope.user && localStorage.getItem('user')){
+hms.controller('landingController', ['$rootScope', '$scope', '$http', '$state', 'baseUrl', function ($rootScope, $scope, $http, $state, baseUrl) {
+    if(localStorage.getItem('user')){
         $scope.user = JSON.parse(localStorage.getItem('user'));
     }
-    $scope.pfpBaseUrl = baseUrl.url;
-
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -33,7 +13,6 @@ hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'bas
             toast.onmouseleave = Swal.resumeTimer;
         }
     });
-
     $scope.logout = function () {
         $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function(res) {
             Toast.fire({
@@ -46,11 +25,11 @@ hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'bas
             if(localStorage.getItem('user')){
                 localStorage.removeItem('user');
             }
-            $state.go('landing')
+            // $state.go('landing')
+            $scope.user = null;
 
         }).catch(function(e){
             console.log(e);
         })
     }
-
 }]);

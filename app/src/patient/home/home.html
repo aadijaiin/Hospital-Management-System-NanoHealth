@@ -8,19 +8,19 @@
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-                <a ui-sref="home" class="nav-link fs-5" aria-current="page">
+                <a ui-sref="home" class="nav-link fs-5 link-dark" aria-current="page">
                     <i class="bi bi-house-door"></i>
                     Dashboard
                 </a>
             </li>
             <li>
-                <a ui-sref="home.appointment" class="nav-link fs-5">
+                <a ui-sref="home.appointment" class="nav-link fs-5 link-dark">
                     <i class="bi bi-calendar-check"></i>
                     Book Appointment
                 </a>
             </li>
             <li>
-                <a ui-sref="home.appointmentHistory" class="nav-link fs-5">
+                <a ui-sref="home.appointmentHistory" class="nav-link link-dark fs-5">
                     <i class="bi bi-clock-history"></i>
                     Appointment History
                 </a>
@@ -34,13 +34,13 @@
                 <strong>{{user.first_name}}</strong>
             </a>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <li><a class="dropdown-item" ui-sref="home.appointment">New Appointment</a></li>
+                <li><a class="dropdown-item" ui-sref="home.appointment"><i class="bi bi-plus-square pe-2"></i>New Appointment</a></li>
                 <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
-                <li><a class="dropdown-item" ui-sref="profile">Profile</a></li>
+                <li><a class="dropdown-item" ui-sref="profile"><i class="bi bi-person-circle pe-2"></i>Profile</a></li>
                 <li>
                     <hr class="dropdown-divider">
                 </li>
-                <li><a class="dropdown-item" ng-click="logout()">Sign out</a></li>
+                <li><a class="dropdown-item text-danger fw-medium" ng-click="logout()"><i class="bi bi-door-closed-fill pe-2"></i>Sign out</a></li>
             </ul>
         </div>
     </div>
