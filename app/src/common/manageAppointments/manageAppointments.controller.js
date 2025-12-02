@@ -38,46 +38,46 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
                 $scope.doctors = res.data.doctor_data;
                 $scope.patients = res.data.patient_data;
 
-                for (let appointment of $scope.appointments) {
-                    let doctor = $scope.doctors.filter(function (doctor) {
-                        return doctor.id === appointment.doctor_id;
-                    })[0]
+                // for (let appointment of $scope.appointments) {
+                //     let doctor = $scope.doctors.filter(function (doctor) {
+                //         return doctor.id === appointment.doctor_id;
+                //     })[0]
 
-                    let patient = $scope.patients.filter(function (patient) {
-                        return patient.id === appointment.patient_id;
-                    })[0]
+                //     let patient = $scope.patients.filter(function (patient) {
+                //         return patient.id === appointment.patient_id;
+                //     })[0]
 
-                    patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
+                //     patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
 
-                    appointment['doctor'] = doctor;
-                    appointment['patient'] = patient;
-                }
+                //     appointment['doctor'] = doctor;
+                //     appointment['patient'] = patient;
+                // }
 
-                for (let doctor of $scope.doctors) {
-                    let temp = $scope.appointments.filter(function (appointment) {
-                        return appointment.doctor_id === doctor.id;
-                    });
-                    doctor['patients'] = [];
-                    let ids = [];
-                    for (let t of temp) {
-                        if (!ids.includes(t.patient.id)) {
-                            doctor['patients'].push(t.patient);
-                            ids.push(t.patient.id);
-                        }
+                // for (let doctor of $scope.doctors) {
+                //     let temp = $scope.appointments.filter(function (appointment) {
+                //         return appointment.doctor_id === doctor.id;
+                //     });
+                //     doctor['patients'] = [];
+                //     let ids = [];
+                //     for (let t of temp) {
+                //         if (!ids.includes(t.patient.id)) {
+                //             doctor['patients'].push(t.patient);
+                //             ids.push(t.patient.id);
+                //         }
 
-                    }
-                    console.log('ids ', ids);
-                }
+                //     }
+                //     console.log('ids ', ids);
+                // }
 
-                console.log($scope.doctors)
-                // console.log($scope.patients)
-                console.log($scope.appointments);
+                // console.log($scope.doctors)
+                // // console.log($scope.patients)
+                // console.log($scope.appointments);
             })
-        } else if($scope.user.role == 'Doc'){
+        } else if ($scope.user.role == 'Doc') {
             $http.get(`${baseUrl.url}/${baseUrl.receptionist.data}`).then(function (res) {
                 console.log(res.data);
                 $scope.appointments = res.data;
-            }).catch(function(e){
+            }).catch(function (e) {
                 console.log(e);
             })
         }
@@ -143,8 +143,23 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
         })
 
     }
+    $scope.numberOfMedicines = [1];
 
-    const myModal = new bootstrap.Modal('#exampleModal', {})
+    const myModal = new bootstrap.Modal('#exampleModal')
+    // const prescriptionModal = new bootstrap.Modal('#prescriptionModal')
+    // const prescriptionModal = document.getElementById('prescriptionModal')
+    // prescriptionModal.addEventListener('hidden.bs.modal', function (event) {
+    //     console.log($scope.numberOfMedicines);
+    //     console.log(
+    //         'fired...'
+    //     )
+    //     $scope.numberOfMedicines = [1];
+    //     console.log($scope.numberOfMedicines);
+    // })
+
+    $scope.incrementNumberOfMedicines = function () {
+        $scope.numberOfMedicines.push(1);
+    }
 
 
 

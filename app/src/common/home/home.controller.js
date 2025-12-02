@@ -44,38 +44,44 @@ hms.controller('reportController', ['$rootScope', '$scope', '$http', '$state', '
     $scope.getDashboard = function () {
         $http.get(`${baseUrl.url}/${baseUrl.receptionist.dashboard}`).then(function (res) {
             console.log('dashboard res: ', res);
-            const data = [];
-            for(e of res.data.appointment) {
-                data.push(e.count)
+            $scope.labels = [];
+            $scope.counts = [];
+            for (let e of res.data.appointment) {
+                $scope.labels.push(e.date)
+                $scope.counts.push(e.count);
             }
-            // console.log(...e)
+            // console.log(...labels)
+            // console.log(...counts)
         }).catch(function (e) {
             console.log(e);
         })
     }
 
-    // $scope.getDashboard();
+    $scope.getDashboard();
 
-    // const ctx = document.getElementById('myChart')
-    // console.log('ctx :', ctx)
-    // new Chart(ctx, {
-    //     type: 'bar',
-    //     data: {
-    //         labels: ['Placed', 'Shipped', 'Dispatched', 'Delivered'],
-    //         datasets: [{
-    //             label: '# of Votes',
-    //             data: [],
-    //             borderWidth: 1
-    //         }]
-    //     },
-    //     options: {
-    //         scales: {
-    //             y: {
-    //                 beginAtZero: true
-    //             }
-    //         }
-    //     }
-    // })
+
+
+    const ctx = document.getElementById('myChart')
+    console.log('ctx :', ctx)
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: $scope.labels,
+            datasets: [{
+                label: '# of Votes',
+                data: $scope.counts,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    })
+
 
     $rootScope.getUser = function () {
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
@@ -87,7 +93,7 @@ hms.controller('reportController', ['$rootScope', '$scope', '$http', '$state', '
 
         }).catch(function (e) {
             console.log(e);
-                $state.go('login');
+            $state.go('login');
         })
     }
 
