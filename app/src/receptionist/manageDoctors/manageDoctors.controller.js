@@ -17,6 +17,13 @@ hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$sta
 
     $scope.pfpBaseUrl = baseUrl.url;
 
+    $scope.bigSideBar = true;
+    $scope.showBigSideBar = function () {
+        $scope.bigSideBar = true;
+    }
+    $scope.hideBigSideBar = function () {
+        $scope.bigSideBar = false;
+    }
 
     $scope.getData = function () {
         $http.get(`${baseUrl.url}/${baseUrl.receptionist.data}`).then(function (res) {
@@ -66,7 +73,7 @@ hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$sta
         })
     }
 
-    // if($scope.user) $scope.getData();
+    $scope.getData();
 
 
 

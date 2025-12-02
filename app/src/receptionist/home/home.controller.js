@@ -28,13 +28,6 @@ hms.controller('receptionistHomeController', ['$rootScope','$scope', '$http', '$
 
     $scope.pfpBaseUrl = baseUrl.url;
 
-    $scope.bigSideBar = true;
-    $scope.showBigSideBar = function () {
-        $scope.bigSideBar = true;
-    }
-    $scope.hideBigSideBar = function () {
-        $scope.bigSideBar = false;
-    }
 
     $scope.logout = function () {
         $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function(res) {

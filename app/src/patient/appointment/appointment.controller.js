@@ -93,11 +93,6 @@ hms.controller('appointmentController', ['$rootScope', '$scope', '$http', '$stat
             return d.id == $scope.doc
         })[0];
     }
-    // $scope.timeOfVisit = function () {
-    //     console.log($scope.datetime.toString().slice(0, 15))
-    //     $scope.date = $scope.datetime.toString().slice(0, 15);
-    //     $scope.time = $scope.datetime.toString().slice(16, 21);
-    // }
     $scope.bookAppointment = function () {
         let appointmentForm = new FormData(document.getElementById('appointmentForm'));
         if (appointmentForm.get('reason_to_visit').trim().length < 2) {

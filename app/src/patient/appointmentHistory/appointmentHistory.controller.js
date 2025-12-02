@@ -5,7 +5,7 @@ hms.controller('appointmentHistoryController', ['$rootScope', '$scope', '$http',
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
             $rootScope.user = res.data;
-            if(res.data.role != 'Pat'){
+            if (res.data.role != 'Pat') {
                 $state.go('home');
             }
         }).catch(function (e) {
@@ -13,16 +13,8 @@ hms.controller('appointmentHistoryController', ['$rootScope', '$scope', '$http',
             $state.go('login');
         })
     }
-    // if(!$rootScope.user){
-        $scope.getUser();
-    // }
-    $scope.bigSideBar = true;
-    $scope.showBigSideBar = function () {
-        $scope.bigSideBar = true;
-    }
-    $scope.hideBigSideBar = function () {
-        $scope.bigSideBar = false;
-    }
+    $scope.getUser();
+
     $rootScope.pfpBaseUrl = baseUrl.url
 
     console.log("getting appointment history...");
@@ -52,13 +44,13 @@ hms.controller('appointmentHistoryController', ['$rootScope', '$scope', '$http',
             console.log(res);
             // $scope.appointments = res.data;
             for (let appointment of res.data) {
-                appointment.appointment_time = appointment.appointment_time.slice(0,5)
+                appointment.appointment_time = appointment.appointment_time.slice(0, 5)
                 appointment.doctor = $scope.doctors.filter(function (doc) {
                     return doc.id === appointment.doctor_id;
                 })[0];
-                if(appointment.appointment_date < new Date().toLocaleDateString('sv-SE')) {
+                if (appointment.appointment_date < new Date().toLocaleDateString('sv-SE')) {
                     $scope.pastAppointments.push(appointment);
-                } else if(appointment.appointment_date > new Date().toLocaleDateString('sv-SE')) {
+                } else if (appointment.appointment_date > new Date().toLocaleDateString('sv-SE')) {
                     $scope.upComingAppointments.push(appointment);
                 } else {
                     $scope.todaysAppointments.push(appointment);

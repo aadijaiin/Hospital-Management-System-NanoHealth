@@ -1,4 +1,5 @@
-<!-- 
+<!-- <div class="d-flex h-100"> -->
+<!-- modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form class="modal-content" ng-submit="updateAppoinmentStatus()" id="updateAppoinmentStatusForm">
@@ -8,27 +9,41 @@
             </div>
             <div class="modal-body">
                 <div>
-                    <input type="radio" ng-model="accepted" value='0' class="btn-check" name="options-base" id="option5" autocomplete="off" checked>
+                    <input type="radio" ng-model="accepted" value='0' class="btn-check" name="options-base" id="option5"
+                        autocomplete="off" checked>
                     <label class="btn btn-outline-success" for="option5">Approve</label>
 
-                    <input type="radio" ng-model="accepted" value='1' class="btn-check" name="options-base" id="option6" autocomplete="off">
+                    <input type="radio" ng-model="accepted" value='1' class="btn-check" name="options-base" id="option6"
+                        autocomplete="off">
                     <label class="btn btn-outline-danger" for="option6">Reject</label>
-                   
+                    <!-- <select ng-model="accepted" required name="accepted" class="form-select" aria-label="Default select example">
+                        <option selected disabled value="">Status</option>
+                        <option value="True">Accept</option>
+                        <option  value="False">Reject</option>
+                    </select> -->
                     <div class="mb-3" ng-show="accepted == '1'">
-                        <label for="message-text" class="col-form-label">Message:</label>
+                        <label for="message-text" class="col-form-label">Reason:</label>
                         <textarea ng-model="reason_for_cancel" class="form-control" id="message-text"></textarea>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Send message</button>
+                <button type="submit" class="btn btn-primary">Update</button>
             </div>
         </form>
     </div>
 </div>
 
-    </main>
+<!-- <main class="container-fluid overflow-auto">
+        <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
+            <div class="lh-1">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    Breadcrumb
+                </nav>
+            </div>
+        </div>
+    </main> -->
 <main role="main" class="container-fluid p-3 overflow-auto">
     <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
         class="chartjs-size-monitor">
@@ -47,13 +62,20 @@
             <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
         </form>
     </div>
+
+    <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
+            style="display: block; width: 1152px; height: 486px;"></canvas> -->
+
+    <!-- <h2>Appointments</h2> -->
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
+                    <!-- <th>#</th> -->
                     <th>Patient</th>
                     <th>Date</th>
-                    <th>Doctor</th>
+                    <th ng-if="user.role=='Doc'">Reason</th>
+                    <th ng-if="user.role=='Rec'">Doctor</th>
                     <th>Time</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -61,7 +83,15 @@
             </thead>
             <tbody>
                 <tr ng-repeat="appointment in appointments | filter:query:strict">
-                    <td class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{appointment.patient.patient_photo}} width="44"
+                    <td ng-if="user.role=='Doc'" class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{appointment.patient_photo}} width="44"
+                            height="44" class="rounded-circle pe-2 object-fit-cover" alt="">
+                        <div class="d-flex flex-column justify-content-center">
+                            <p class="p-0 m-0">{{appointment.patient.first_name + " " +
+                                appointment.patient.last_name}}</p>
+                            <p class="fs-6 text-muted p-0 m-0">{{appointment.patient.age}}</p>
+                        </div>
+                    </td>
+                    <td ng-if="user.role=='Rec'" class="d-flex"> <img src={{pfpBaseUrl}}/auth/{{appointment.patient.patient_photo}} width="44"
                             height="44" class="rounded-circle pe-2 object-fit-cover" alt="">
                         <div class="d-flex flex-column justify-content-center">
                             <p class="p-0 m-0">{{appointment.patient.first_name + " " +
@@ -70,7 +100,8 @@
                         </div>
                     </td>
                     <td>{{ appointment.appointment_date | date }}</td>
-                    <td><img src={{pfpBaseUrl}}/auth/{{appointment.doctor.doctor_photo}} height="44" width="44"
+                    <td ng-if="user.role=='Doc'"><i class="bi bi-eye fs-5" ng-click="showReasonToVisit(appointment.reason_to_vist)"></i></td>
+                    <td ng-if="user.role=='Rec'"><img src={{pfpBaseUrl}}/auth/{{appointment.doctor.doctor_photo}} height="44" width="44"
                             class="rounded-circle pe-2 object-fit-cover" alt="">Dr. {{appointment.doctor.first_name
                         + " " + appointment.doctor.last_name}}</td>
                     <td>{{appointment.appointment_time.slice(0,5)}}</td>
@@ -87,12 +118,12 @@
                         <p class="badge bg-primary">{{appointment.status}}</p>
                     </td>
                     <td>
-                        <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                        <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal" 
                             ng-click="editAppointmentStatus(appointment.id)"></i>
-
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-</main> -->
+</main>
+<!-- </div> -->

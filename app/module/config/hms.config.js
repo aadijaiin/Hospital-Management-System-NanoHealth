@@ -15,7 +15,7 @@ function myInterceptor ($q, loaderService) {
     return {
         request: function (request) {
             request['withCredentials'] = true;
-            loaderService.show();
+            if (count == 0) loaderService.show();
             count++;
             return request;
         },
@@ -120,7 +120,7 @@ hms.config(function ($stateProvider, $httpProvider, $locationProvider) {
     let manageAppointmentsState = {
         name : 'home.manageAppointments',
         url : '/manage-appointments',
-        templateUrl : 'app/src/receptionist/manageAppointments/manageAppointments.html',
+        templateUrl : 'app/src/common/manageAppointments/manageAppointments.html',
         controller : 'manageAppointmentsController'
     }
 
