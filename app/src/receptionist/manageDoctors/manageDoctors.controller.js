@@ -1,27 +1,22 @@
 
 hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
-    if(!$rootScope.user && !localStorage.getItem('user')){
+    $rootScope.getUser = function () {
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
-            $rootScope.user = res.data;
-            localStorage.setItem('user', JSON.stringify(res.data));
+            if(res.data.role != 'Rec'){
+                $state.go('home');
+            }
+            $scope.user = res.data;
         }).catch(function (e) {
             console.log(e);
+            $state.go('login');
         })
     }
-    else if(!$rootScope.user && localStorage.getItem('user')){
-        $scope.user = JSON.parse(localStorage.getItem('user'));
-    }
+
+    $scope.getUser();
 
     $scope.pfpBaseUrl = baseUrl.url;
 
-    $scope.bigSideBar = true;
-    $scope.showBigSideBar = function () {
-        $scope.bigSideBar = true;
-    }
-    $scope.hideBigSideBar = function () {
-        $scope.bigSideBar = false;
-    }
 
     $scope.getData = function () {
         $http.get(`${baseUrl.url}/${baseUrl.receptionist.data}`).then(function (res) {
@@ -71,7 +66,7 @@ hms.controller('manageDoctorsController', ['$rootScope','$scope', '$http', '$sta
         })
     }
 
-    $scope.getData();
+    // if($scope.user) $scope.getData();
 
 
 

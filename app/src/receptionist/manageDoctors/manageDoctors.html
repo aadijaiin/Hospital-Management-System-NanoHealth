@@ -1,4 +1,4 @@
-<main role="main" class="container-fluid p-3 overflow-auto">
+<ui-view role="main" class="container-fluid p-3 overflow-auto">
     <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
         class="chartjs-size-monitor">
         <div class="chartjs-size-monitor-expand"
@@ -14,47 +14,11 @@
         <h1 class="h2">Doctors</h1>
         <form class="d-flex" role="search">
             <input class="form-control me-2" ng-model="query" type="search" placeholder="Search" aria-label="Search" />
-            <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
         </form>
     </div>
 
-    <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
-            style="display: block; width: 1152px; height: 486px;"></canvas> -->
-
-    <!-- <h2>Doctors</h2> -->
-    <!-- <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>No. of patients</th>
-                        <th>Specialization</th>
-                        <th>Qualification</th>
-                        <th>Experience</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="doctor in doctors | filter:query:strict">
-                        <td class="d-flex" ui-sref="receptionist.doctor({doctor : doctor, id: doctor.id})"> <img
-                                src={{pfpBaseUrl}}/auth/{{doctor.doctor_photo}} width="44" height="44"
-                                class="rounded-circle pe-2 object-fit-cover" alt="">
-                            <div class="d-flex flex-column justify-content-center">
-                                <p class="p-0 m-0">{{doctor.first_name + " " +
-                                    doctor.last_name}}</p>
-                                <p class="fs-6 text-muted p-0 m-0">{{doctor.age}}, {{doctor.gender}}</p>
-                            </div>
-                        </td>
-                        <td>{{doctor.patients.length}}</td>
-                        <td>{{doctor.specialization_name}}</td>
-                        <td>{{doctor.qualification}}</td>
-                        <td>{{doctor.experience}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div> -->
-
     <div class="row gap-4">
-        <div class="card" style="width: 18rem;" ui-sref="receptionist.doctor({doctor : doctor, id: doctor.id})" ng-repeat="doctor in doctors">
+        <div class="card" style="width: 18rem;" ui-sref="home.manageDoctors.doctor({doctor : doctor, id: doctor.id})" ng-repeat="doctor in doctors">
             <img src={{pfpBaseUrl}}/auth/{{doctor.doctor_photo}} class="card-img-top mt-2 rounded-top-3 object-fit-cover" height="220px"
                 alt="...">
             <div class="card-body">
@@ -63,7 +27,7 @@
             </div>
         </div>
     </div>
-</main>
+</ui-view>
 
 <style>
     .card:hover {

@@ -63,19 +63,20 @@ hms.controller('appointmentController', ['$rootScope', '$scope', '$http', '$stat
     ]
 
     $scope.today = new Date().toLocaleDateString('sv-SE');
-    if (!$rootScope.user && !localStorage.getItem('user')) {
+
+    $scope.getUser = function () {
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
             $rootScope.user = res.data;
-            localStorage.setItem('user', JSON.stringify(res.data));
-
+            if (res.data.role != 'Pat') {
+                $state.go('home');
+            }
         }).catch(function (e) {
             console.log(e);
+            $state.go('login');
         })
     }
-    else if (!$rootScope.user && localStorage.getItem('user')) {
-        $rootScope.user = JSON.parse(localStorage.getItem('user'));
-    }
+    $scope.getUser();
     $scope.getDoctors = function () {
         console.log('getting the list of doctors')
         $http.get(`${baseUrl.url}/${baseUrl.patient.getDoctors}`).then(function (res) {

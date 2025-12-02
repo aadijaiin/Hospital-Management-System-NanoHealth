@@ -40,12 +40,7 @@ hms.controller('homeController', ['$rootScope','$scope', '$http', '$state', 'bas
                 icon: 'success',
                 text: res.data.msg
             });
-            if($rootScope.user) {
-                $rootScope.user = null;
-            } 
-            if(localStorage.getItem('user')){
-                localStorage.removeItem('user');
-            }
+            $rootScope.user = null;
             $state.go('landing')
 
         }).catch(function(e){

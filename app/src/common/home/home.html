@@ -7,13 +7,13 @@
         </div>
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a ui-sref="receptionist" class="nav-link link-dark" aria-current="page">
-                    <i class="bi bi-house-door"></i>
-                    Dashboard
+            <li class="nav-item" ng-repeat="nav in sidebar">
+                <a ui-sref="{{nav.url}}" class="nav-link link-dark fs-5" aria-current="page">
+                    <i class="bi {{nav.icons}} pe-2"></i>
+                    {{nav.name}}
                 </a>
             </li>
-            <li>
+            <!-- <li>
                 <a ui-sref="receptionist.manageAppointments" class="nav-link link-dark">
                     <i class="bi bi-speedometer"></i>
                     Appointments
@@ -30,16 +30,16 @@
                     <i class="bi bi-person-circle"></i>
                     Patients
                 </a>
-            </li>
+            </li> -->
         </ul>
         <hr>
         <div class="dropdown">
-            <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+            <p class="pointer d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
                 id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src={{pfpBaseUrl}}/auth/{{user.profile_photo}} alt="" width="32" height="32"
-                    class="rounded-circle me-2">
+                    class="rounded-circle me-2 object-fit-cover broder shadow">
                 <strong>{{user.first_name}}</strong>
-            </a>
+        </p>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
                 <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
                 <li><a class="dropdown-item" href="#">Settings</a></li> -->

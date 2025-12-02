@@ -5,7 +5,8 @@ hms.constant('baseUrl', {
         login: "auth/login/",
         dropdowns : "auth/dropdowns/",
         profile: "auth/profile/",
-        logout: "auth/signOut/"
+        logout: "auth/signOut/",
+        navbar: 'auth/navbar'
     },
     patient: {
         getDoctors: 'patient/doctors/',
@@ -13,7 +14,8 @@ hms.constant('baseUrl', {
     },
     receptionist: {
         data: 'reception/appointments_data/',
-        updateStatus : 'reception/update_appointment'
+        updateStatus : 'reception/update_appointment',
+        dashboard: 'reception/dashboard/'
     }, 
     doctor: {
         dashboard: 'doctor/dashboard/',

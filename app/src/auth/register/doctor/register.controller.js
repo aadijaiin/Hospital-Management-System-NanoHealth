@@ -1,6 +1,6 @@
 
 
-hms.controller('doctorRegisterController', ['$scope', '$http', '$state', 'baseUrl', function ($scope, $http, $state, baseUrl) {
+hms.controller('doctorRegisterController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope,$scope, $http, $state, baseUrl) {
 
     $scope.showPassState = 'Show'
     $scope.showHidePass = function () {
@@ -27,7 +27,21 @@ hms.controller('doctorRegisterController', ['$scope', '$http', '$state', 'baseUr
         }
     });
 
-
+   $scope.getUser = function () {
+        $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
+            console.log(res);
+            $rootScope.user = res.data;
+            $state.go('home')
+        }).catch(function (e) {
+            console.log(e);
+        })
+    }
+    if($rootScope.user){
+        $state.go('home');
+    } else {
+        $scope.getUser();
+    }
+    
     function fileValidation(fileInput) {
         var filePath = fileInput.value;
         var allowedExtensions =

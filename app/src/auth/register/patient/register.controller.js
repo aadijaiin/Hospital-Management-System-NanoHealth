@@ -1,4 +1,4 @@
-hms.controller('patientRegisterController', ['$scope', '$http', '$state', 'baseUrl', function ($scope, $http, $state, baseUrl) {
+hms.controller('patientRegisterController', ['$rootScope','$scope', '$http', '$state', 'baseUrl', function ($rootScope ,$scope, $http, $state, baseUrl) {
 
     $scope.showPassState = 'Show'
     $scope.showHidePass = function () {
@@ -16,6 +16,22 @@ hms.controller('patientRegisterController', ['$scope', '$http', '$state', 'baseU
     // console.log($scope.thatDay);
 
     // $scope.loaderVisible = false;
+
+    $scope.getUser = function () {
+        $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
+            console.log(res);
+            $rootScope.user = res.data;
+            $state.go('home')
+        }).catch(function (e) {
+            console.log(e);
+        })
+    }
+
+    if($rootScope.user){
+        $state.go('home');
+    } else {
+        $scope.getUser();
+    }
     const Toast = Swal.mixin({
         toast: true,
         position: "top-end",

@@ -15,26 +15,23 @@ hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', 'b
         document.getElementById('password').type = $scope.showPassState === 'Show' ? 'text' : 'password';
         $scope.showPassState = $scope.showPassState === 'Show' ? 'Hide' : 'Show';
     }
-    $rootScope.getUser = function () {
+    
+    $scope.getUser = function () {
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
             $rootScope.user = res.data;
-            localStorage.setItem('user', JSON.stringify(res.data));
-
+            $state.go('home')
         }).catch(function (e) {
             console.log(e);
         })
     }
-    if(localStorage.getItem('user') || $rootScope.user){
-        const user = JSON.parse(localStorage.getItem('user'));
-        if(user.role == 'Patient'){
-            $state.go('home');
-        } else if (user.role == 'Doctor'){
-            $state.go('doctor');
-        } else if (user.role ='Receptionist'){
-            $state.go('receptionist');
-        }
+
+    if($rootScope.user){
+        $state.go('home');
+    } else {
+        $scope.getUser();
     }
+    
     $scope.login = function () {
         console.log('login called')
         $scope.user = {
@@ -53,10 +50,7 @@ hms.controller('loginController', ['$rootScope', '$scope', '$http', '$state', 'b
                 icon : 'success', 
                 text : res.data.msg
             })
-            $rootScope.getUser()
-            if(res.data.role == 'Patient') $state.go('home');
-            else if (res.data.role == 'Doctor') $state.go('doctor');
-            else if (res.data.role == 'Receptionist') $state.go('receptionist');
+            $state.go('home');
 
         }).catch(function (e) {
             console.log('error: ', e);

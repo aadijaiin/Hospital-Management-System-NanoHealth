@@ -1,20 +1,20 @@
 
 
 hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http', '$state', 'baseUrl', function ($rootScope, $scope, $http, $state, baseUrl) {
-    if (!$rootScope.user && !localStorage.getItem('user')) {
-        //get user function
+    $rootScope.getUser = function () {
         $http.get(`${baseUrl.url}/${baseUrl.auth.profile}`).then(function (res) {
             console.log(res);
-            $rootScope.user = res.data;
-            localStorage.setItem('user', JSON.stringify(res.data));
-
+            if(res.data.role != 'Rec'){
+                $state.go('home');
+            }
+            $scope.user = res.data;
         }).catch(function (e) {
             console.log(e);
+            $state.go('login');
         })
     }
-    else if (!$rootScope.user && localStorage.getItem('user')) {
-        $scope.user = JSON.parse(localStorage.getItem('user'));
-    }
+
+    $scope.getUser();
 
     const Toast = Swal.mixin({
         toast: true,
@@ -111,8 +111,8 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             method: 'PUT',
             url: `${baseUrl.url}/${baseUrl.receptionist.updateStatus}?id=${$scope.idToEdit}`,
             data: {
-                accepted: $scope.accepted == '0' ? true:false,
-                reason_for_cancel : $scope.reason_for_cancel
+                accepted: $scope.accepted == '0' ? true : false,
+                reason_for_cancel: $scope.reason_for_cancel
             },
             headers: { 'Content-Type': undefined },
         }).then(function (res) {
