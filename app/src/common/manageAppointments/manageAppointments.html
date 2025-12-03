@@ -40,20 +40,20 @@
 <div class="modal fade" id="prescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
-        <form ng-submit="prescribeMedicines()" class="modal-content">
+        <form ng-submit="prescribe()" id="prescriptionForm" class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="exampleModalLabel">Prescribe</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div ng-repeat="number in numberOfMedicines track by $index">
+                <div ng-repeat="i in numberOfMedicines track by $index">
                     <p class="fw-medium mt-2 mb-0 pb-0">Medicine {{$index+1}}</p>
                     <div class=" p-2 rounded-4">
-                        <input required type="text" name="medicine{{i}}" class="form-control"
+                        <input required type="text" name="medicine{{$index+1}}" class="form-control"
                             placeholder="Medicine name">
-                        <input placeholder="Till" name="date{{i}}" class="form-control mt-2" type="text" onfocus="(this.type='date')"
+                        <input placeholder="Till" name="date{{$index+1}}" class="form-control mt-2" type="text" onfocus="(this.type='date')"
                             onblur="(this.type='text')" id="date" />
-                        <select class="form-select mt-2" name="times{{i}}" aria-label="times" required>
+                        <select class="form-select mt-2" name="times{{$index+1}}" aria-label="times" required>
                             <option value="" selected disabled="disabled">Times a day</option>
                             <option ng-repeat="i in [1,2,3,4]" value={{i}}>{{i}}</option>
                         </select>
@@ -159,7 +159,7 @@
                     </td>
                     <td>
                         <button class="btn btn-outline-primary hstack" data-bs-toggle="modal"
-                            data-bs-target="#prescriptionModal">Prescribe</button>
+                            data-bs-target="#prescriptionModal" ng-click="prescribeHelper(appointment.id)">Prescribe</button>
                     </td>
                     <td>
                         <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"

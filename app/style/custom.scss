@@ -1,18 +1,14 @@
 
 
-// required to get $orange variable
-// @import "functions"; 
-// @import "variables";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
 
-@import "/node_modules/bootstrap/scss/functions";
-@import "/node_modules/bootstrap/scss/variables";
+// $primary: bla[ck;
+$custom-colors : (
+  "primary-purple": #75136b,
+  "purple-subtle" : #f8eafa
+);
 
-$primary: $orange; // set the $primary variable
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
-// merge with existing $theme-colors maps
-$theme-colors: map-merge($theme-colors, (
-  "primary": $primary
-));
-
-// set changes
-@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import "../../node_modules/bootstrap/scss/bootstrap";

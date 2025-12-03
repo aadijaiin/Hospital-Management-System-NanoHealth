@@ -114,7 +114,6 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             return;
         }
 
-
         $http({
             method: 'PUT',
             url: `${baseUrl.url}/${baseUrl.receptionist.updateStatus}`,
@@ -144,7 +143,9 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
 
     }
     $scope.numberOfMedicines = [1];
-
+    $scope.prescribeHelper = function(id) {
+        $scope.idToPrescribe = id;
+    }
     const myModal = new bootstrap.Modal('#exampleModal')
     // const prescriptionModal = new bootstrap.Modal('#prescriptionModal')
     // const prescriptionModal = document.getElementById('prescriptionModal')
@@ -159,6 +160,23 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
 
     $scope.incrementNumberOfMedicines = function () {
         $scope.numberOfMedicines.push(1);
+    }
+
+    $scope.prescribe = function () {
+        let form = new FormData(document.getElementById('prescriptionForm'));
+        form.append('id', $scope.idToPrescribe);
+        $http({
+            method: 'POST',
+            data: form,
+            url: `${baseUrl.url}/${baseUrl.doctor.prescribe}`,
+            headers: {
+                'Content-Type' : undefined
+            }
+        }).then(function(res){
+            console.log(res);
+        }).catch(function(e){
+            console.log(e);
+        })
     }
 
 

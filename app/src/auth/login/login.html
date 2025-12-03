@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg px-lg-5 border-bottom container-fluid">
+<!-- <nav class="navbar navbar-expand-lg px-lg-5 border-bottom container-fluid">
     <div class="container-fluid">
         <a class="navbar-brand d-flex justify-content-center align-items-center p-0 text-decoration-none"
             ui-sref="landing"> <img src="app/public/logo.png" style="height: 60px;"> NanoHealth</a>
@@ -78,4 +78,42 @@
             </div>
         </form>
     </div>
-</div>
+</div> -->
+
+
+<main class="d-flex justify-content-center align-items-center vh-100 py-4 bg-purple-subtle">
+    <div class="form-signin w-100 card p-4 shadow" style="max-width: 400px;">
+        <form ng-submit="login()">
+            <div class="d-flex gap-2 align-items-center">
+                <img class="mb-4" src="/app/public/logo.png" alt="" width="72" height="57">
+                <h3 class="h4 fw-normal pb-3">NanoHealth</h3>
+            </div>
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <div class="form-floating mb-3">
+                <!-- <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"> -->
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="abc@xyz.com" ng-model="email" required title='Please enter a valid Email ID'
+                    pattern="[^@\s]+@[a-zA-Z]{3,6}\.[a-zA-Z]{2,4}">
+                <label for="floatingInput">Email address</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="password" id="password" placeholder="Password" required
+                    pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+                    title="password must contain 1 small case , 1 upper case,1 special character and 1 number, length must be between 8-12."
+                    maxlength="16" minlength="8" ng-model="password" class="form-control">
+                    
+                <label for="floatingPassword">Password</label>
+            </div>
+            <div class="form-check text-start my-3">
+                <input ng-click="showHidePass()" class="form-check-input" type="checkbox" value="remember-me" id="checkDefault">
+                <label class="form-check-label" for="checkDefault">
+                    Show password
+                </label>
+            </div>
+            <button class="btn btn-primary-purple w-100 py-2" type="submit">Sign in</button>
+            <p class="form-text text-center fw-bolder mt-2"> Haven't Registered yet? <a ui-sref="patientRegistration"
+                style="color:#75136b;"> register</a> now!</p>
+                <p class="mt-3 mb-3 text-center text-primary-purple">© NanoHealth</p>
+        </form>
+    </div>
+</main>

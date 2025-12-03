@@ -57,30 +57,30 @@ hms.controller('reportController', ['$rootScope', '$scope', '$http', '$state', '
         })
     }
 
-    $scope.getDashboard();
+    // $scope.getDashboard();
 
 
 
-    const ctx = document.getElementById('myChart')
-    console.log('ctx :', ctx)
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: $scope.labels,
-            datasets: [{
-                label: '# of Votes',
-                data: $scope.counts,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    })
+    // const ctx = document.getElementById('myChart')
+    // console.log('ctx :', ctx)
+    // new Chart(ctx, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: $scope.labels,
+    //         datasets: [{
+    //             label: '# of Votes',
+    //             data: $scope.counts,
+    //             borderWidth: 1
+    //         }]
+    //     },
+    //     options: {
+    //         scales: {
+    //             y: {
+    //                 beginAtZero: true
+    //             }
+    //         }
+    //     }
+    // })
 
 
     $rootScope.getUser = function () {
