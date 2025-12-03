@@ -17,8 +17,10 @@ hms.controller('doctorFullViewController', ['$rootScope','$scope', '$http', '$st
     $scope.getUser();
     console.log($state.params)
 
-
-    $scope.id = $state.params.id
+    if(!$state.params.doctor){
+        $state.go('manageDoctors');
+    }
+    // $scope.id = $state.params.id
     $scope.doctor = $state.params.doctor
 
 

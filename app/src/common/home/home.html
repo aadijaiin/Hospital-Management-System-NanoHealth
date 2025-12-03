@@ -1,48 +1,28 @@
 <div class="d-flex h-100">
     <!-- sidebar -->
-    <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" ng-show="bigSideBar" style="width: 280px;">
+    <div class="d-flex flex-column flex-shrink-0 p-3 bg-primary-purple" ng-show="bigSideBar" style="width: 280px;">
         <div class="d-flex align-items-center justify-content-between mb-3 mb-md-0 link-dark text-decoration-none">
-            <span class="fs-4"><img src="app/public/logo.svg" height="24" class="pe-2" alt="">NanoHealth</span>
-            <i class="bi bi-arrow-left-square-fill" ng-click="hideBigSideBar()"></i>
+            <span class="fs-4 text-white"><img src="app/public/logo.svg" height="24" class="pe-2 text-white" alt="">NanoHealth</span>
+            <i class="bi bi-arrow-left-square-fill text-white" ng-click="hideBigSideBar()"></i>
         </div>
-        <hr>
+        <hr class="bg-white border-white">
         <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item" ng-repeat="nav in sidebar">
-                <a ui-sref="{{nav.url}}" class="nav-link link-dark fs-5" aria-current="page">
+                <a ui-sref="{{nav.url}}" class="nav-link link-light fs-5" aria-current="page">
                     <i class="bi {{nav.icons}} pe-2"></i>
                     {{nav.name}}
                 </a>
             </li>
-            <!-- <li>
-                <a ui-sref="receptionist.manageAppointments" class="nav-link link-dark">
-                    <i class="bi bi-speedometer"></i>
-                    Appointments
-                </a>
-            </li>
-            <li>
-                <a ui-sref="receptionist.manageDoctors" class="nav-link link-dark">
-                    <i class="bi bi-calendar-check"></i>
-                    Doctors
-                </a>
-            </li>
-            <li>
-                <a ui-sref="receptionist.managePatients" class="nav-link link-dark">
-                    <i class="bi bi-person-circle"></i>
-                    Patients
-                </a>
-            </li> -->
         </ul>
         <hr>
         <div class="dropdown">
-            <p class="pointer d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+            <p class="pointer d-flex align-items-center link-light text-decoration-none dropdown-toggle"
                 id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
                 <img src={{pfpBaseUrl}}/auth/{{user.profile_photo}} alt="" width="32" height="32"
                     class="rounded-circle me-2 object-fit-cover broder shadow">
                 <strong>{{user.first_name}}</strong>
         </p>
             <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                <!-- <li><a class="dropdown-item" href="#">New project...</a></li>
-                <li><a class="dropdown-item" href="#">Settings</a></li> -->
                 <li><a class="dropdown-item" ui-sref="profile"><i class="bi bi-person-circle pe-2"></i>Profile</a></li>
 
                 <li>
@@ -54,7 +34,6 @@
             </ul>
         </div>
     </div>
-    <!-- small sidebar -->
     <div class="d-flex flex-column flex-shrink-0 bg-light" ng-hide="bigSideBar"
         style="width: 3.5rem;background-color: #f9fbfc;">
         <div class="d-flex justify-content-center align-items-center p-3 link-dark text-decoration-none" title=""
@@ -111,10 +90,9 @@
         </div>
     </div>
 
-    <!-- <div class="container"><canvas id="myChart"></canvas></div> -->
 
     <ui-view class="container-fluid p-0 m-0 overflow-auto">
-        <main>
+        <!-- <main>
             <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-body-tertiary">
                 <div class="col-md-6 p-lg-5 mx-auto my-5">
                     <h1 class="display-3 fw-bold">Designed for engineers</h1>
@@ -146,7 +124,7 @@
                     </div>
                 </div>
             </div>
-        </main>
+        </main> -->
     </ui-view>
 </div>
 

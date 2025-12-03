@@ -32,7 +32,7 @@ hms.controller('patientFullViewController', ['$rootScope','$scope', '$http', '$s
 
     $scope.getUser();
     console.log($state.params)
-    if(!$state.params.id || !$state.params.patient){
+    if(!$state.params.patient){
         $state.go('receptionist.managePatients');
     }
 

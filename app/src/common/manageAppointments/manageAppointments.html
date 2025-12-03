@@ -16,11 +16,7 @@
                     <input type="radio" ng-model="accepted" value='1' class="btn-check" name="options-base" id="option6"
                         autocomplete="off">
                     <label class="btn btn-outline-danger" for="option6">Reject</label>
-                    <!-- <select ng-model="accepted" required name="accepted" class="form-select" aria-label="Default select example">
-                        <option selected disabled value="">Status</option>
-                        <option value="True">Accept</option>
-                        <option  value="False">Reject</option>
-                    </select> -->
+
                     <div class="mb-3" ng-show="accepted == '1'">
                         <label for="message-text" class="col-form-label">Reason:</label>
                         <textarea ng-model="reason_for_cancel" class="form-control" id="message-text"></textarea>
@@ -59,8 +55,8 @@
                         </select>
                     </div>
                 </div>
-                <button class="btn btn-outline-primary mt-2 form-control" ng-click="incrementNumberOfMedicines()">Add
-                    medicine</button>
+                <button class="btn btn-outline-primary mt-2 form-control" ng-click="incrementNumberOfMedicines()">
+                    Add medicine</button>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -113,7 +109,7 @@
                     <th ng-if="user.role=='Rec'">Doctor</th>
                     <th>Time</th>
                     <th>Status</th>
-                    <th>Prescription</th>
+                    <th ng-if="user.role=='Doc'">Prescription</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -157,10 +153,13 @@
                     <td ng-show="appointment.status=='Pending'">
                         <p class="badge bg-primary">{{appointment.status}}</p>
                     </td>
-                    <td>
+                    <td ng-show="user.role=='Doc'">
                         <button class="btn btn-outline-primary hstack" data-bs-toggle="modal"
                             data-bs-target="#prescriptionModal" ng-click="prescribeHelper(appointment.id)">Prescribe</button>
                     </td>
+                    <!-- <td ng-show="user.role=='Doc' && appointment.status=='Approved by doctor'">
+
+                    </td> -->
                     <td>
                         <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
                             ng-click="editAppointmentStatus(appointment.id)"></i>
@@ -170,4 +169,3 @@
         </table>
     </div>
 </main>
-<!-- </div> -->

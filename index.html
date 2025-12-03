@@ -40,57 +40,6 @@
             animation-duration: 0.5s;
         }
 
-        @keyframes l17 {
-            100% {
-                transform: rotate(1turn)
-            }
-        }
-
-        .ml-2 {
-            margin-left: 0.4rem;
-        }
-
-        .w-45 {
-            width: 45%;
-        }
-
-        .h-lg-50 {
-            height: 92%;
-        }
-
-        .w-lg-75 {
-            width: 75%;
-        }
-
-        #form {
-            width: 45%;
-        }
-
-        @media screen and (max-width: 990px) {
-            .h-lg-50 {
-                height: auto
-            }
-
-            .w-lg-75 {
-                width: 100%;
-            }
-
-        }
-
-        @media (max-width: 1200px) {
-            #form {
-                width: 100%;
-            }
-        }
-
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            margin: 0;
-        }
-
         .loader-overlay {
             position: fixed;
             top:0;
@@ -103,13 +52,39 @@
             align-items: center;
             z-index: 9999;
         }
+
+        @keyframes l17 {
+            100% {
+                transform: rotate(1turn)
+            }
+        }
+
+        .ml-2 {
+            margin-left: 0.4rem;
+        }
+
+        .h-92 {
+            height: 92%;
+        }
+
+        @media screen and (max-width: 990px) {
+            .h-92 {
+                height: auto
+            }
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            margin: 0;
+        }
+
+        
         i, a, button, svg, img, .card, .pointer {
             cursor: pointer;
         }
-
-        /* .pointer:hover {
-            background-color: rgba(0, 0, 0, 0.1);
-        } */
     </style>
 </head>
 
@@ -134,7 +109,6 @@
     <script src="app/src/auth/register/doctor/register.controller.js"></script>
     <script src="app/src/auth/login/login.controller.js"></script>
     <script src="app/module/constants/hms.constants.js"></script>
-    <script src="app/src/patient/home/home.controller.js"></script>
     <script src="app/src/patient/appointment/appointment.controller.js"></script>
     <script src="app/src/patient/appointmentHistory/appointmentHistory.controller.js"></script>
     <script src="app/src/receptionist/home/home.controller.js"></script>
@@ -142,7 +116,6 @@
     <script src="app/src/receptionist/manageDoctors/manageDoctors.controller.js"></script>
     <script src="app/src/receptionist/managePatients/managePatients.controller.js"></script>
     <script src="app/src/receptionist/manageDoctors/doctor/doctor.controller.js"></script>
-    <script src="app/src/doctor/home/home.controller.js"></script>
     <script src="app/src/common/profile/profile.controller.js"></script>
     <script src="app/src/receptionist/managePatients/patient/patient.controller.js"></script>
     <script src="app/src/landing/landing.controller.js"></script>
