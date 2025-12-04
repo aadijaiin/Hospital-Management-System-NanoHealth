@@ -19,7 +19,9 @@ hms.controller('reportController', ['$rootScope', '$scope', '$http', '$state', '
     }
     $rootScope.pfpBaseUrl = baseUrl.url
     $scope.getSidebar = function (res) {
-        $http.get(`${baseUrl.url}/${baseUrl.auth.navbar}?role=${res.data.role}`).then(function (result) {
+        $http.get(`${baseUrl.url}/${baseUrl.auth.navbar}`, {params: {
+            role: res.data.role
+        }}).then(function (result) {
             console.log(result.data)
             $scope.sidebar = result.data;
         }).catch(function (e) {
@@ -28,17 +30,41 @@ hms.controller('reportController', ['$rootScope', '$scope', '$http', '$state', '
     }
 
     $scope.logout = function () {
-        $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function (res) {
-            Toast.fire({
-                icon: 'success',
-                text: res.data.msg
-            });
-            $rootScope.user = null;
-            $state.go('landing')
+        Swal.fire({
+            title: "Are you sure ?",
+            // showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Save",
+            confirmButtonText: `Log out`
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function (res) {
+                    Toast.fire({
+                        icon: 'success',
+                        text: res.data.msg
+                    });
+                    $rootScope.user = null;
+                    $state.go('landing')
 
-        }).catch(function (e) {
-            console.log(e);
-        })
+                }).catch(function (e) {
+                    console.log(e);
+                })
+                
+            } else if (result.isDenied) {
+                // Swal.fire("Changes are not saved", "", "info");
+            }
+        });
+        // $http.delete(`${baseUrl.url}/${baseUrl.auth.logout}`).then(function (res) {
+        //     Toast.fire({
+        //         icon: 'success',
+        //         text: res.data.msg
+        //     });
+        //     $rootScope.user = null;
+        //     $state.go('landing')
+
+        // }).catch(function (e) {
+        //     console.log(e);
+        // })
     }
 
     $scope.getDashboard = function () {
@@ -50,8 +76,6 @@ hms.controller('reportController', ['$rootScope', '$scope', '$http', '$state', '
                 $scope.labels.push(e.date)
                 $scope.counts.push(e.count);
             }
-            // console.log(...labels)
-            // console.log(...counts)
         }).catch(function (e) {
             console.log(e);
         })

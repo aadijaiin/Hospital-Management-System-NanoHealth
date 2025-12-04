@@ -37,41 +37,6 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
                 $scope.appointments = res.data.appointment_data;
                 $scope.doctors = res.data.doctor_data;
                 $scope.patients = res.data.patient_data;
-
-                // for (let appointment of $scope.appointments) {
-                //     let doctor = $scope.doctors.filter(function (doctor) {
-                //         return doctor.id === appointment.doctor_id;
-                //     })[0]
-
-                //     let patient = $scope.patients.filter(function (patient) {
-                //         return patient.id === appointment.patient_id;
-                //     })[0]
-
-                //     patient.age = new Date().getFullYear() - new Date(patient.D_O_B).getFullYear();
-
-                //     appointment['doctor'] = doctor;
-                //     appointment['patient'] = patient;
-                // }
-
-                // for (let doctor of $scope.doctors) {
-                //     let temp = $scope.appointments.filter(function (appointment) {
-                //         return appointment.doctor_id === doctor.id;
-                //     });
-                //     doctor['patients'] = [];
-                //     let ids = [];
-                //     for (let t of temp) {
-                //         if (!ids.includes(t.patient.id)) {
-                //             doctor['patients'].push(t.patient);
-                //             ids.push(t.patient.id);
-                //         }
-
-                //     }
-                //     console.log('ids ', ids);
-                // }
-
-                // console.log($scope.doctors)
-                // // console.log($scope.patients)
-                // console.log($scope.appointments);
             })
         } else if ($scope.user.role == 'Doc') {
             $http.get(`${baseUrl.url}/${baseUrl.receptionist.data}`).then(function (res) {
@@ -82,6 +47,8 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             })
         }
     }
+
+    $scope.today = new Date().toLocaleDateString('sv-SE');
 
     $scope.showReasonToVisit = function (reason) {
         Swal.fire({
@@ -99,13 +66,13 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             icon: "question"
         });
     }
-    $scope.editAppointmentStatus = function (id) {
+    $scope.editAppointmentStatus = function (id, status) {
         console.log(id, typeof id);
+        console.log('status : ',status)
         $scope.idToEdit = id;
     }
 
     $scope.updateAppoinmentStatus = function () {
-        // let form = new FormData(document.getElementById('updateAppoinmentStatusForm'));
         if ($scope.accepted == '1' && (!$scope.reason_for_cancel || $scope.reason_for_cancel.trim().length <= 2)) {
             Toast.fire({
                 icon: 'error',
@@ -113,7 +80,6 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             })
             return;
         }
-
         $http({
             method: 'PUT',
             url: `${baseUrl.url}/${baseUrl.receptionist.updateStatus}`,
@@ -140,9 +106,9 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
             $scope.accepted = '';
             $scope.reason_for_cancel = '';
         })
-
     }
     $scope.numberOfMedicines = [1];
+    $scope.numberOfTests = [1];
     $scope.prescribeHelper = function(id) {
         $scope.idToPrescribe = id;
     }
@@ -160,6 +126,10 @@ hms.controller('manageAppointmentsController', ['$rootScope', '$scope', '$http',
 
     $scope.incrementNumberOfMedicines = function () {
         $scope.numberOfMedicines.push(1);
+    }
+    $scope.incrementNumberOfTests = function () {
+        $scope.numberOfTests.push(1);
+
     }
 
     $scope.prescribe = function () {

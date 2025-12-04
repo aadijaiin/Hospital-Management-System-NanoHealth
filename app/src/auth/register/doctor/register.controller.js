@@ -135,7 +135,6 @@ hms.controller('doctorRegisterController', ['$rootScope','$scope', '$http', '$st
         }
     }
 
-    // $http.get(`https://10.21.96.123:8000/auth/dropdowns/`).then(function (res) {
     $http.get(`${baseUrl.url}/${baseUrl.auth.dropdowns}`).then(function (res) {
         console.log('result: ', res.data);
         $scope.genders = res.data.genders;

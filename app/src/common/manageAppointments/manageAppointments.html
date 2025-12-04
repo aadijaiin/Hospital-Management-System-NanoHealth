@@ -1,5 +1,4 @@
-<!-- <div class="d-flex h-100"> -->
-<!-- modal -->
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form class="modal-content" ng-submit="updateAppoinmentStatus()" id="updateAppoinmentStatusForm">
@@ -30,15 +29,13 @@
         </form>
     </div>
 </div>
-
 <!-- prescription modal -->
-
 <div class="modal fade" id="prescriptionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
 
         <form ng-submit="prescribe()" id="prescriptionForm" class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Prescribe</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Prescribe Medicines</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -47,7 +44,7 @@
                     <div class=" p-2 rounded-4">
                         <input required type="text" name="medicine{{$index+1}}" class="form-control"
                             placeholder="Medicine name">
-                        <input placeholder="Till" name="date{{$index+1}}" class="form-control mt-2" type="text" onfocus="(this.type='date')"
+                        <input placeholder="Till" min={{today}} name="date{{$index+1}}" class="form-control mt-2" type="text" onfocus="(this.type='date')"
                             onblur="(this.type='text')" id="date" />
                         <select class="form-select mt-2" name="times{{$index+1}}" aria-label="times" required>
                             <option value="" selected disabled="disabled">Times a day</option>
@@ -58,6 +55,21 @@
                 <button class="btn btn-outline-primary mt-2 form-control" ng-click="incrementNumberOfMedicines()">
                     Add medicine</button>
             </div>
+            <div class="modal-header border-top border-bottom-0">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Prescribe Tests</h1>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            </div>
+            <div class="modal-body">
+                <div ng-repeat="i in numberOfTests track by $index">
+                    <p class="fw-medium mt-2 mb-0 pb-0">Test {{$index+1}}</p>
+                    <div class=" p-2 rounded-4">
+                        <input required type="text" name="test{{$index+1}}" class="form-control"
+                            placeholder="Test name">
+                    </div>
+                </div>
+                <button class="btn btn-outline-primary mt-2 form-control" ng-click="incrementNumberOfTests()">
+                    Add Test</button>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                 <button type="submit" class="btn btn-primary">Prescribe</button>
@@ -66,16 +78,7 @@
     </div>
 </div>
 
-<!-- <main class="container-fluid overflow-auto">
-        <div class="d-flex align-items-center p-3 my-3  bg-purple rounded shadow-sm">
-            <div class="lh-1">
-                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                    Breadcrumb
-                </nav>
-            </div>
-        </div>
-    </main> -->
-<main role="main" class="container-fluid p-3 overflow-auto">
+<main role="main" class="container-fluid min-vh-100 p-3 overflow-auto">
     <div style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"
         class="chartjs-size-monitor">
         <div class="chartjs-size-monitor-expand"
@@ -94,15 +97,10 @@
         </form>
     </div>
 
-    <!-- <canvas class="my-4 chartjs-render-monitor" id="myChart" width="1152" height="486"
-            style="display: block; width: 1152px; height: 486px;"></canvas> -->
-
-    <!-- <h2>Appointments</h2> -->
     <div class="table-responsive">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <!-- <th>#</th> -->
                     <th>Patient</th>
                     <th>Date</th>
                     <th ng-if="user.role=='Doc'">Reason</th>
@@ -121,7 +119,6 @@
                         <div class="d-flex flex-column justify-content-center">
                             <p class="p-0 m-0">{{appointment.patient_first_name + " " +
                                 appointment.patient_last_name}}</p>
-                            <!-- <p class="fs-6 text-muted p-0 m-0">{{appointment_patient.age}}</p> -->
                         </div>
                     </td>
                     <td ng-if="user.role=='Rec'" class="d-flex"> <img
@@ -130,7 +127,6 @@
                         <div class="d-flex flex-column justify-content-center">
                             <p class="p-0 m-0">{{appointment.patient_first_name + " " +
                                 appointment.patient_last_name}}</p>
-                            <!-- <p class="fs-6 text-muted p-0 m-0">{{appointment.patient_age}}</p> -->
                         </div>
                     </td>
                     <td>{{ appointment.appointment_date | date }}</td>
@@ -153,16 +149,13 @@
                     <td ng-show="appointment.status=='Pending'">
                         <p class="badge bg-primary">{{appointment.status}}</p>
                     </td>
-                    <td ng-show="user.role=='Doc'">
-                        <button class="btn btn-outline-primary hstack" data-bs-toggle="modal"
+                    <td >
+                        <button ng-show="appointment.status == 'Approved by doctor' && user.role != 'Rec'" class="btn btn-outline-primary hstack" data-bs-toggle="modal"
                             data-bs-target="#prescriptionModal" ng-click="prescribeHelper(appointment.id)">Prescribe</button>
                     </td>
-                    <!-- <td ng-show="user.role=='Doc' && appointment.status=='Approved by doctor'">
-
-                    </td> -->
                     <td>
                         <i class="bi bi-pencil-square pe-2 fs-5" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                            ng-click="editAppointmentStatus(appointment.id)"></i>
+                            ng-click="editAppointmentStatus(appointment.id, appointment.status)"></i>
                     </td>
                 </tr>
             </tbody>
